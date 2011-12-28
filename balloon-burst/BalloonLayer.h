@@ -1,9 +1,8 @@
 //
-//  HelloWorldLayer.h
+//  BalloonLayer.h
 //  balloon-burst
 //
 //  Created by Jamie Ly on 12/27/11.
-//  Copyright University of Pennsylvania 2011. All rights reserved.
 //
 
 
@@ -11,11 +10,11 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface BalloonLayer : CCLayer
 {
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
+// returns a CCScene that contains the BalloonLayer as the only child
 +(CCScene *) scene;
 -(void) setUpMenus;
 -(CCSprite *) newBalloon;

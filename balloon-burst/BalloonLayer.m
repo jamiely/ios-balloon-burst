@@ -1,22 +1,21 @@
 //
-//  HelloWorldLayer.m
+//  BalloonLayer.m
 //  balloon-burst
 //
 //  Created by Jamie Ly on 12/27/11.
-//  Copyright University of Pennsylvania 2011. All rights reserved.
 //
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "BalloonLayer.h"
 #import "CCTouchDispatcher.h"
 #import "SimpleAudioEngine.h"
 
 CCSprite *seeker1;
 NSMutableArray *balloons;
 
-// HelloWorldLayer implementation
-@implementation HelloWorldLayer
+// BalloonLayer implementation
+@implementation BalloonLayer
 
 +(CCScene *) scene
 {
@@ -24,7 +23,7 @@ NSMutableArray *balloons;
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	BalloonLayer *layer = [BalloonLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];

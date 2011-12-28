@@ -3,7 +3,6 @@
 //  balloon-burst
 //
 //  Created by Jamie Ly on 12/27/11.
-//  Copyright University of Pennsylvania 2011. All rights reserved.
 //
 
 #ifndef __GAME_CONFIG_H

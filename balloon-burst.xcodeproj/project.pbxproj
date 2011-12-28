@@ -121,7 +121,6 @@
 		6D11E2D214AAC07300F51E9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D114AAC07300F51E9D /* main.m */; };
 		6D11E2D514AAC07300F51E9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D414AAC07300F51E9D /* AppDelegate.m */; };
 		6D11E2D814AAC07300F51E9D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D714AAC07300F51E9D /* RootViewController.m */; };
-		6D11E2DB14AAC07300F51E9D /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2DA14AAC07300F51E9D /* HelloWorldLayer.m */; };
 		6D11E2E314AAC4BB00F51E9D /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E214AAC4BB00F51E9D /* seeker.png */; };
 		6D11E2EA14AAC86200F51E9D /* myfirstbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */; };
 		6D11E2EB14AAC86200F51E9D /* myfirstbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E514AAC86100F51E9D /* myfirstbutton.png */; };
@@ -133,6 +132,11 @@
 		6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */; };
 		6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */; };
 		6DCEDCC414AAEBD400334A2F /* balloon_pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */; };
+		6DCEDCC914AB961A00334A2F /* treasure_chest.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC514AB961900334A2F /* treasure_chest.svg */; };
+		6DCEDCCA14AB961A00334A2F /* metal_key.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC614AB961A00334A2F /* metal_key.svg */; };
+		6DCEDCCB14AB961A00334A2F /* balloon.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC714AB961A00334A2F /* balloon.svg */; };
+		6DCEDCCC14AB961A00334A2F /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC814AB961A00334A2F /* balloon.png */; };
+		6DCEDCCF14AB967800334A2F /* BalloonLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCCE14AB967800334A2F /* BalloonLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -368,8 +372,6 @@
 		6D11E2D414AAC07300F51E9D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6D11E2D614AAC07300F51E9D /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		6D11E2D714AAC07300F51E9D /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		6D11E2D914AAC07300F51E9D /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		6D11E2DA14AAC07300F51E9D /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		6D11E2DC14AAC07300F51E9D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		6D11E2E214AAC4BB00F51E9D /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seeker.png; path = Resources/seeker.png; sourceTree = "<group>"; };
 		6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myfirstbutton_selected.png; path = Resources/myfirstbutton_selected.png; sourceTree = "<group>"; };
@@ -382,6 +384,12 @@
 		6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stars-grayscale.png"; path = "Resources/stars-grayscale.png"; sourceTree = "<group>"; };
 		6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "background-music-aac.caf"; path = "Resources/background-music-aac.caf"; sourceTree = "<group>"; };
 		6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = balloon_pop.mp3; path = Resources/balloon_pop.mp3; sourceTree = "<group>"; };
+		6DCEDCC514AB961900334A2F /* treasure_chest.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = treasure_chest.svg; path = Resources/treasure_chest.svg; sourceTree = "<group>"; };
+		6DCEDCC614AB961A00334A2F /* metal_key.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = metal_key.svg; path = Resources/metal_key.svg; sourceTree = "<group>"; };
+		6DCEDCC714AB961A00334A2F /* balloon.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = balloon.svg; path = Resources/balloon.svg; sourceTree = "<group>"; };
+		6DCEDCC814AB961A00334A2F /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = Resources/balloon.png; sourceTree = "<group>"; };
+		6DCEDCCD14AB967800334A2F /* BalloonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonLayer.h; sourceTree = "<group>"; };
+		6DCEDCCE14AB967800334A2F /* BalloonLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalloonLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,12 +446,12 @@
 		6D11E18114AAC07000F51E9D /* balloon-burst */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCCD14AB967800334A2F /* BalloonLayer.h */,
+				6DCEDCCE14AB967800334A2F /* BalloonLayer.m */,
 				6D11E2D314AAC07300F51E9D /* AppDelegate.h */,
 				6D11E2D414AAC07300F51E9D /* AppDelegate.m */,
 				6D11E2D614AAC07300F51E9D /* RootViewController.h */,
 				6D11E2D714AAC07300F51E9D /* RootViewController.m */,
-				6D11E2D914AAC07300F51E9D /* HelloWorldLayer.h */,
-				6D11E2DA14AAC07300F51E9D /* HelloWorldLayer.m */,
 				6D11E2DC14AAC07300F51E9D /* GameConfig.h */,
 				6D11E18214AAC07000F51E9D /* Resources */,
 				6D11E19614AAC07000F51E9D /* libs */,
@@ -455,6 +463,10 @@
 		6D11E18214AAC07000F51E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCC514AB961900334A2F /* treasure_chest.svg */,
+				6DCEDCC614AB961A00334A2F /* metal_key.svg */,
+				6DCEDCC714AB961A00334A2F /* balloon.svg */,
+				6DCEDCC814AB961A00334A2F /* balloon.png */,
 				6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */,
 				6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */,
 				6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */,
@@ -862,6 +874,10 @@
 				6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */,
 				6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */,
 				6DCEDCC414AAEBD400334A2F /* balloon_pop.mp3 in Resources */,
+				6DCEDCC914AB961A00334A2F /* treasure_chest.svg in Resources */,
+				6DCEDCCA14AB961A00334A2F /* metal_key.svg in Resources */,
+				6DCEDCCB14AB961A00334A2F /* balloon.svg in Resources */,
+				6DCEDCCC14AB961A00334A2F /* balloon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,7 +985,7 @@
 				6D11E2D214AAC07300F51E9D /* main.m in Sources */,
 				6D11E2D514AAC07300F51E9D /* AppDelegate.m in Sources */,
 				6D11E2D814AAC07300F51E9D /* RootViewController.m in Sources */,
-				6D11E2DB14AAC07300F51E9D /* HelloWorldLayer.m in Sources */,
+				6DCEDCCF14AB967800334A2F /* BalloonLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

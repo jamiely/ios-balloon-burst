@@ -3,14 +3,13 @@
 //  balloon-burst
 //
 //  Created by Jamie Ly on 12/27/11.
-//  Copyright University of Pennsylvania 2011. All rights reserved.
 //
 
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
+#import "BalloonLayer.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -110,7 +109,7 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [BalloonLayer scene]];
     
     
 }
