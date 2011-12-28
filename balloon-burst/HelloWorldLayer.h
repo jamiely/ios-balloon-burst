@@ -17,5 +17,7 @@
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+-(void) setUpMenus;
+-(CCSprite *) newBalloon;
 
 @end

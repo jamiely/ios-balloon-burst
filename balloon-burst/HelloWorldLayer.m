@@ -13,6 +13,7 @@
 
 CCSprite *seeker1;
 CCSprite *cocosGuy;
+NSMutableArray *balloons;
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -44,16 +45,15 @@ CCSprite *cocosGuy;
         [self addChild:seeker1];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        cocosGuy = [CCSprite spriteWithFile: @"red_balloon.png"];
-        cocosGuy.position = ccp( 200, 300 );
-        cocosGuy.scale = 0.3;
-        [self addChild:cocosGuy];
+        cocosGuy = [self newBalloon];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
         
         self.isTouchEnabled = YES;
         [self setUpMenus];
+        
+        balloons = [NSMutableArray array];
         
 	}
 	return self;
@@ -109,26 +109,35 @@ CCSprite *cocosGuy;
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+
+float secondsSinceLastBalloon = 0;
+
 - (void) nextFrame:(ccTime)dt {
     seeker1.position = ccp( seeker1.position.x + 100*dt, seeker1.position.y );
     if (seeker1.position.x > 480+32) {
         seeker1.position = ccp( -32, seeker1.position.y );
     }
     
+    secondsSinceLastBalloon += dt;
+    if(secondsSinceLastBalloon > 2.0f) {
+        cocosGuy = [self newBalloon];
+        secondsSinceLastBalloon = 0;
+    }
     
-    // do the same for our cocos2d guy, reusing the app icon as its image
-    cocosGuy = [CCSprite spriteWithFile: @"red_balloon.png"];
-    cocosGuy.position = ccp( 200, 300 );
-    cocosGuy.scale = 0.3;
-    [self addChild:cocosGuy];
-
 }
 
-- (void) newBalloon {
+- (CCSprite*) newBalloon {
     CCSprite* balloon = [CCSprite spriteWithFile: @"red_balloon.png"];
-    balloon.position = ccp(200, 300);
+    int x = (arc4random() % 400);
+    NSLog(@"newBalloon x: %d", x);
+    balloon.position = ccp(x, 0);
     balloon.scale = 0.3;
     [self addChild:balloon];
+    CCMoveTo *moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
+    [balloon runAction:moveUp];
+    //[balloons addObject:balloon];
+
+    return balloon;
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
