@@ -19,5 +19,6 @@
 +(CCScene *) scene;
 -(void) setUpMenus;
 -(CCSprite *) newBalloon;
-
+-(void) cleanUpSprite: (CCSprite*) balloon;
+-(void) popBalloon: (CCSprite*) balloon;
 @end

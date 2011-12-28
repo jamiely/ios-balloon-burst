@@ -134,7 +134,7 @@ float secondsSinceLastBalloon = 0;
     [balloons addObject:balloon];
     
     id moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
-    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanupSprite:) data:balloon];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:balloon];
     id seq = [CCSequence actions:moveUp, cleanupAction, nil];
     [balloon runAction:seq];
 
@@ -144,12 +144,27 @@ float secondsSinceLastBalloon = 0;
     return balloon;
 }
 
-- (void) cleanupSprite:(CCSprite*)inSprite
-{
+- (void) explosionAt: (float) x y: (float) y {
+    CCParticleSystem* emitter = [CCParticleExplosion node];
+    emitter.texture = [[CCTextureCache sharedTextureCache] addImage: @"stars-grayscale.png"];
+	emitter.autoRemoveOnFinish = YES;
+    emitter.position = ccp(x,y);
+    
+    [self addChild:emitter];
+}
+
+- (void) cleanUpSprite:(CCSprite*)inSprite
+{   
     // call your destroy particles here
     // remove the sprite
     [self removeChild:inSprite cleanup:YES];
     [balloons removeObject:inSprite];
+}
+
+
+- (void) popBalloon:(CCSprite*) balloon {
+    [self explosionAt: balloon.position.x y:balloon.position.y];
+    [self cleanUpSprite:balloon];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -164,7 +179,7 @@ float secondsSinceLastBalloon = 0;
         // we have to refine this bounding box later
         CGRect rect = [balloon boundingBox];
         if(CGRectContainsPoint(rect, location)) {
-            [self cleanupSprite:balloon];
+            [self popBalloon:balloon];
             return; 
         }
     }

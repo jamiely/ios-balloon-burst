@@ -130,6 +130,7 @@
 		6D11E2EE14AAC86200F51E9D /* mythirdbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E814AAC86100F51E9D /* mythirdbutton_selected.png */; };
 		6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E914AAC86200F51E9D /* mythirdbutton.png */; };
 		6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDC7F14AACF1400334A2F /* red_balloon.png */; };
+		6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -376,6 +377,7 @@
 		6D11E2E814AAC86100F51E9D /* mythirdbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mythirdbutton_selected.png; path = Resources/mythirdbutton_selected.png; sourceTree = "<group>"; };
 		6D11E2E914AAC86200F51E9D /* mythirdbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mythirdbutton.png; path = Resources/mythirdbutton.png; sourceTree = "<group>"; };
 		6DCEDC7F14AACF1400334A2F /* red_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_balloon.png; path = Resources/red_balloon.png; sourceTree = "<group>"; };
+		6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stars-grayscale.png"; path = "Resources/stars-grayscale.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 		6D11E18214AAC07000F51E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */,
 				6DCEDC7F14AACF1400334A2F /* red_balloon.png */,
 				6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */,
 				6D11E2E514AAC86100F51E9D /* myfirstbutton.png */,
@@ -850,6 +853,7 @@
 				6D11E2EE14AAC86200F51E9D /* mythirdbutton_selected.png in Resources */,
 				6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */,
 				6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */,
+				6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
