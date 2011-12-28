@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 #import "CCTouchDispatcher.h"
+#import "SimpleAudioEngine.h"
 
 CCSprite *seeker1;
 NSMutableArray *balloons;
@@ -53,6 +54,8 @@ NSMutableArray *balloons;
         
         self.isTouchEnabled = YES;
         [self setUpMenus];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
 	}
 	return self;
 }
@@ -163,6 +166,7 @@ float secondsSinceLastBalloon = 0;
 
 
 - (void) popBalloon:(CCSprite*) balloon {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     [self explosionAt: balloon.position.x y:balloon.position.y];
     [self cleanUpSprite:balloon];
 }

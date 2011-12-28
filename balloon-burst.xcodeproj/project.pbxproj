@@ -131,6 +131,8 @@
 		6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E914AAC86200F51E9D /* mythirdbutton.png */; };
 		6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDC7F14AACF1400334A2F /* red_balloon.png */; };
 		6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */; };
+		6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */; };
+		6DCEDCC414AAEBD400334A2F /* balloon_pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +380,8 @@
 		6D11E2E914AAC86200F51E9D /* mythirdbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mythirdbutton.png; path = Resources/mythirdbutton.png; sourceTree = "<group>"; };
 		6DCEDC7F14AACF1400334A2F /* red_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_balloon.png; path = Resources/red_balloon.png; sourceTree = "<group>"; };
 		6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stars-grayscale.png"; path = "Resources/stars-grayscale.png"; sourceTree = "<group>"; };
+		6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "background-music-aac.caf"; path = "Resources/background-music-aac.caf"; sourceTree = "<group>"; };
+		6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = balloon_pop.mp3; path = Resources/balloon_pop.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +455,8 @@
 		6D11E18214AAC07000F51E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCC314AAEBD400334A2F /* balloon_pop.mp3 */,
+				6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */,
 				6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */,
 				6DCEDC7F14AACF1400334A2F /* red_balloon.png */,
 				6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */,
@@ -854,6 +860,8 @@
 				6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */,
 				6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */,
 				6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */,
+				6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */,
+				6DCEDCC414AAEBD400334A2F /* balloon_pop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
