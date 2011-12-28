@@ -12,7 +12,6 @@
 #import "CCTouchDispatcher.h"
 
 CCSprite *seeker1;
-CCSprite *cocosGuy;
 NSMutableArray *balloons;
 
 // HelloWorldLayer implementation
@@ -44,17 +43,16 @@ NSMutableArray *balloons;
         seeker1.position = ccp( 50, 100 );
         [self addChild:seeker1];
         
-        // do the same for our cocos2d guy, reusing the app icon as its image
-        cocosGuy = [self newBalloon];
+        balloons = [[NSMutableArray alloc] initWithObjects:nil];
+        
+        // create an initial balloon
+        [self newBalloon];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
         
         self.isTouchEnabled = YES;
         [self setUpMenus];
-        
-        balloons = [[NSMutableArray alloc] initWithObjects:nil];
-        
 	}
 	return self;
 }
@@ -133,13 +131,14 @@ float secondsSinceLastBalloon = 0;
     balloon.position = ccp(x, 0);
     balloon.scale = 0.3;
     [self addChild:balloon];
+    [balloons addObject:balloon];
     
     id moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
     id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanupSprite:) data:balloon];
     id seq = [CCSequence actions:moveUp, cleanupAction, nil];
     [balloon runAction:seq];
 
-    [balloons addObject:balloon];
+    
     NSLog(@"Balloon count: %i", balloons.count);
 
     return balloon;
@@ -161,8 +160,14 @@ float secondsSinceLastBalloon = 0;
     
 	CGPoint location = [self convertTouchToNodeSpace: touch];
     
-	//[cocosGuy stopAllActions];
-	//[cocosGuy runAction: [CCMoveTo actionWithDuration:5 position:location]];    
+    for(CCSprite* balloon in balloons) {
+        // we have to refine this bounding box later
+        CGRect rect = [balloon boundingBox];
+        if(CGRectContainsPoint(rect, location)) {
+            [self cleanupSprite:balloon];
+            return; 
+        }
+    }
 }
 
 // on "dealloc" you need to release all your retained objects
