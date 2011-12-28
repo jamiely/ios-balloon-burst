@@ -53,7 +53,7 @@ NSMutableArray *balloons;
         self.isTouchEnabled = YES;
         [self setUpMenus];
         
-        balloons = [NSMutableArray array];
+        balloons = [[NSMutableArray alloc] initWithObjects:nil];
         
 	}
 	return self;
@@ -120,7 +120,7 @@ float secondsSinceLastBalloon = 0;
     
     secondsSinceLastBalloon += dt;
     if(secondsSinceLastBalloon > 2.0f) {
-        cocosGuy = [self newBalloon];
+        [self newBalloon];
         secondsSinceLastBalloon = 0;
     }
     
@@ -133,11 +133,24 @@ float secondsSinceLastBalloon = 0;
     balloon.position = ccp(x, 0);
     balloon.scale = 0.3;
     [self addChild:balloon];
-    CCMoveTo *moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
-    [balloon runAction:moveUp];
-    //[balloons addObject:balloon];
+    
+    id moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanupSprite:) data:balloon];
+    id seq = [CCSequence actions:moveUp, cleanupAction, nil];
+    [balloon runAction:seq];
+
+    [balloons addObject:balloon];
+    NSLog(@"Balloon count: %i", balloons.count);
 
     return balloon;
+}
+
+- (void) cleanupSprite:(CCSprite*)inSprite
+{
+    // call your destroy particles here
+    // remove the sprite
+    [self removeChild:inSprite cleanup:YES];
+    [balloons removeObject:inSprite];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -145,10 +158,11 @@ float secondsSinceLastBalloon = 0;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    
 	CGPoint location = [self convertTouchToNodeSpace: touch];
     
-	[cocosGuy stopAllActions];
-	[cocosGuy runAction: [CCMoveTo actionWithDuration:1 position:location]];    
+	//[cocosGuy stopAllActions];
+	//[cocosGuy runAction: [CCMoveTo actionWithDuration:5 position:location]];    
 }
 
 // on "dealloc" you need to release all your retained objects
