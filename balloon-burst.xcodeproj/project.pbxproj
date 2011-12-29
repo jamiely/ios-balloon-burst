@@ -137,6 +137,12 @@
 		6DCEDCCB14AB961A00334A2F /* balloon.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC714AB961A00334A2F /* balloon.svg */; };
 		6DCEDCCC14AB961A00334A2F /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC814AB961A00334A2F /* balloon.png */; };
 		6DCEDCCF14AB967800334A2F /* BalloonLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCCE14AB967800334A2F /* BalloonLayer.m */; };
+		6DCEDCD114AC26A000334A2F /* GoldenCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD014AC26A000334A2F /* GoldenCoin.png */; };
+		6DCEDCD514AC2DDA00334A2F /* belt_buckle_clink.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD414AC2DDA00334A2F /* belt_buckle_clink.mp3 */; };
+		6DCEDCDB14AC305400334A2F /* metal_key.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD714AC305400334A2F /* metal_key.png */; };
+		6DCEDCDC14AC305400334A2F /* cupcake_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD814AC305400334A2F /* cupcake_small.png */; };
+		6DCEDCDD14AC305400334A2F /* diamond_juliane_krug_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */; };
+		6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCDE14AC307700334A2F /* treasure_chest.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -390,6 +396,12 @@
 		6DCEDCC814AB961A00334A2F /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = Resources/balloon.png; sourceTree = "<group>"; };
 		6DCEDCCD14AB967800334A2F /* BalloonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonLayer.h; sourceTree = "<group>"; };
 		6DCEDCCE14AB967800334A2F /* BalloonLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalloonLayer.m; sourceTree = "<group>"; };
+		6DCEDCD014AC26A000334A2F /* GoldenCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoldenCoin.png; path = Resources/GoldenCoin.png; sourceTree = "<group>"; };
+		6DCEDCD414AC2DDA00334A2F /* belt_buckle_clink.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = belt_buckle_clink.mp3; path = Resources/belt_buckle_clink.mp3; sourceTree = "<group>"; };
+		6DCEDCD714AC305400334A2F /* metal_key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metal_key.png; path = Resources/metal_key.png; sourceTree = "<group>"; };
+		6DCEDCD814AC305400334A2F /* cupcake_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupcake_small.png; path = Resources/cupcake_small.png; sourceTree = "<group>"; };
+		6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamond_juliane_krug_01.png; path = Resources/diamond_juliane_krug_01.png; sourceTree = "<group>"; };
+		6DCEDCDE14AC307700334A2F /* treasure_chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treasure_chest.png; path = Resources/treasure_chest.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +475,12 @@
 		6D11E18214AAC07000F51E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCDE14AC307700334A2F /* treasure_chest.png */,
+				6DCEDCD714AC305400334A2F /* metal_key.png */,
+				6DCEDCD814AC305400334A2F /* cupcake_small.png */,
+				6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */,
+				6DCEDCD414AC2DDA00334A2F /* belt_buckle_clink.mp3 */,
+				6DCEDCD014AC26A000334A2F /* GoldenCoin.png */,
 				6DCEDCC514AB961900334A2F /* treasure_chest.svg */,
 				6DCEDCC614AB961A00334A2F /* metal_key.svg */,
 				6DCEDCC714AB961A00334A2F /* balloon.svg */,
@@ -878,6 +896,12 @@
 				6DCEDCCA14AB961A00334A2F /* metal_key.svg in Resources */,
 				6DCEDCCB14AB961A00334A2F /* balloon.svg in Resources */,
 				6DCEDCCC14AB961A00334A2F /* balloon.png in Resources */,
+				6DCEDCD114AC26A000334A2F /* GoldenCoin.png in Resources */,
+				6DCEDCD514AC2DDA00334A2F /* belt_buckle_clink.mp3 in Resources */,
+				6DCEDCDB14AC305400334A2F /* metal_key.png in Resources */,
+				6DCEDCDC14AC305400334A2F /* cupcake_small.png in Resources */,
+				6DCEDCDD14AC305400334A2F /* diamond_juliane_krug_01.png in Resources */,
+				6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

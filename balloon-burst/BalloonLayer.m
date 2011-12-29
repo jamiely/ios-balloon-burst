@@ -13,7 +13,9 @@
 
 CCSprite *seeker1;
 NSMutableArray *balloons;
+NSMutableArray *treasures;
 CCLabelTTF *lblScore;
+NSArray *availableTreasures;
 
 // BalloonLayer implementation
 @implementation BalloonLayer
@@ -55,6 +57,7 @@ int score = 0;
         [self addChild:seeker1];
         
         balloons = [[NSMutableArray alloc] initWithObjects:nil];
+        treasures = [[NSMutableArray alloc] initWithObjects:nil];
         
         // create an initial balloon
         [self newBalloon];
@@ -71,7 +74,7 @@ int score = 0;
         lblScore.position = ccp(lblSize.width/2, size.height-lblSize.height/2);
         [self addChild:lblScore];
         
-        
+        availableTreasures = [[NSArray alloc] initWithObjects:@"GoldenCoin.png", @"treasure_chest.png", @"metal_key.png", @"cupcake_small.png", @"diamond_juliane_krug_01.png", nil];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
 	}
 	return self;
@@ -157,7 +160,7 @@ float secondsSinceLastBalloon = 0;
     
     
     id moveUp = [CCMoveTo actionWithDuration:balloonSpeed position:ccp(x, 400)];
-    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:balloon];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpBalloon:) data:balloon];
     id seq = [CCSequence actions:moveUp, cleanupAction, nil];
     [balloon runAction:seq];
 
@@ -176,20 +179,60 @@ float secondsSinceLastBalloon = 0;
     [self addChild:emitter];
 }
 
+- (void) cleanUpBalloon:(CCSprite*) balloon {
+    [balloons removeObject:balloon];
+    [self cleanUpSprite:balloon];
+}
+
+- (void) cleanUpTreasure:(CCSprite*) treasure {
+    [treasures removeObject:treasure];
+    [treasure stopAllActions];
+    [self cleanUpSprite:treasure];
+}
+
+
 - (void) cleanUpSprite:(CCSprite*)inSprite
 {   
     // call your destroy particles here
     // remove the sprite
     [self removeChild:inSprite cleanup:YES];
-    [balloons removeObject:inSprite];
+}
+
+
+- (CCSprite*) dropTreasure:(NSString*) spriteFile x: (float) x y: (float) y {
+    CCSprite* treasure = [CCSprite spriteWithFile:spriteFile];
+    treasure.position = ccp(x,y);
+    treasure.scale = 0.05;
+    [self addChild:treasure];
+    [treasures addObject:treasure];
+    
+    id moveDown = [CCMoveTo actionWithDuration:1 position:ccp(x, -10)];
+    
+    int rotateSign = arc4random() % 2 == 0 ? 1 : -1;
+    
+    id rotateTo = [CCRotateTo actionWithDuration:1 angle:rotateSign * 180];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpTreasure:) data:treasure];
+    id seq = [CCSequence actions:moveDown, cleanupAction, nil];
+    [treasure runAction:seq];
+    [treasure runAction:rotateTo];
+    
+    return treasure;
 }
 
 
 - (void) popBalloon:(CCSprite*) balloon {
     [self updateScore: 10];
+    NSString* treasureName = [availableTreasures objectAtIndex: arc4random() % availableTreasures.count];
+    [self dropTreasure: treasureName x: balloon.position.x y:balloon.position.y];
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     [self explosionAt: balloon.position.x y:balloon.position.y];
-    [self cleanUpSprite:balloon];
+    [self cleanUpBalloon:balloon];
+}
+
+- (void) pickupTreasure:(CCSprite*) treasure {
+    [self updateScore: 15];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"belt_buckle_clink.mp3"];
+    [self cleanUpTreasure:treasure];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -199,15 +242,34 @@ float secondsSinceLastBalloon = 0;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     
 	CGPoint location = [self convertTouchToNodeSpace: touch];
-    
+
+    [self checkTouchTreasure:location];
+    [self checkTouchBalloons:location];
+}
+
+- (void) checkTouchBalloons: (CGPoint) location {
+    // check balloons
     for(CCSprite* balloon in balloons) {
         // we have to refine this bounding box later
         CGRect rect = [balloon boundingBox];
         if(CGRectContainsPoint(rect, location)) {
             [self popBalloon:balloon];
-            return; 
+            return;
         }
     }
+}
+
+- (void) checkTouchTreasure: (CGPoint) location {
+    // check treasures first, so we don't drop something just to pick it up
+    for(CCSprite* treasure in treasures) {
+        // we have to refine this bounding box later
+        CGRect rect = [treasure boundingBox];
+        if(CGRectContainsPoint(rect, location)) {
+            [self pickupTreasure:treasure];
+            return;
+        }
+    }
+    
 }
 
 // on "dealloc" you need to release all your retained objects
