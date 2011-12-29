@@ -13,6 +13,7 @@
 
 CCSprite *seeker1;
 NSMutableArray *balloons;
+CCLabelTTF *lblScore;
 
 // BalloonLayer implementation
 @implementation BalloonLayer
@@ -32,12 +33,22 @@ NSMutableArray *balloons;
 	return scene;
 }
 
+int score = 0;
+-(void)updateScore: (int) delta{
+    score += delta;
+    [lblScore setString:[[NSString alloc] initWithFormat:@"Score: %04d", score]];
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        // ask director the the window size
+		CGSize size = [[CCDirector sharedDirector] winSize];
+    
+        
         // create and initialize our seeker sprite, and add it to this layer
         seeker1 = [CCSprite spriteWithFile: @"seeker.png"];
         seeker1.position = ccp( 50, 100 );
@@ -53,6 +64,13 @@ NSMutableArray *balloons;
         
         self.isTouchEnabled = YES;
         [self setUpMenus];
+        
+        // score display
+        lblScore = [CCLabelTTF labelWithString:@"Score: 0000" fontName:@"Helvetica" fontSize:30];
+        CGSize lblSize = lblScore.boundingBox.size;
+        lblScore.position = ccp(lblSize.width/2, size.height-lblSize.height/2);
+        [self addChild:lblScore];
+        
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
 	}
@@ -127,15 +145,18 @@ float secondsSinceLastBalloon = 0;
 }
 
 - (CCSprite*) newBalloon {
-    CCSprite* balloon = [CCSprite spriteWithFile: @"red_balloon.png"];
-    int x = (arc4random() % 400);
+    CCSprite* balloon = [CCSprite spriteWithFile: @"balloon.png"];
+    int x = arc4random() % 400;
+    int balloonSpeed = arc4random() % 8 + 2;
+    
     NSLog(@"newBalloon x: %d", x);
     balloon.position = ccp(x, 0);
-    balloon.scale = 0.3;
+    balloon.scale = balloonSpeed/60.0f;
     [self addChild:balloon];
     [balloons addObject:balloon];
     
-    id moveUp = [CCMoveTo actionWithDuration:5 position:ccp(x, 400)];
+    
+    id moveUp = [CCMoveTo actionWithDuration:balloonSpeed position:ccp(x, 400)];
     id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:balloon];
     id seq = [CCSequence actions:moveUp, cleanupAction, nil];
     [balloon runAction:seq];
@@ -165,6 +186,7 @@ float secondsSinceLastBalloon = 0;
 
 
 - (void) popBalloon:(CCSprite*) balloon {
+    [self updateScore: 10];
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     [self explosionAt: balloon.position.x y:balloon.position.y];
     [self cleanUpSprite:balloon];
