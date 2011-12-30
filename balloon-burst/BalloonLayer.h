@@ -20,4 +20,6 @@
 -(void) cleanUpSprite: (CCSprite*) balloon;
 -(void) popBalloon: (CCSprite*) balloon;
 -(void) setUpClouds;
+-(void) checkTouchTreasure: (CGPoint) location;
+-(void) checkTouchBalloons: (CGPoint) location;
 @end

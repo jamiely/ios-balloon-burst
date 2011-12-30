@@ -830,7 +830,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "University of Pennsylvania";
+				ORGANIZATIONNAME = angelforge.org;
 			};
 			buildConfigurationList = 6D11E16714AAC07000F51E9D /* Build configuration list for PBXProject "balloon-burst" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1038,8 +1038,10 @@
 				GCC_PREFIX_HEADER = "balloon-burst/Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "balloon-burst/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1053,8 +1055,10 @@
 				GCC_PREFIX_HEADER = "balloon-burst/Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "balloon-burst/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

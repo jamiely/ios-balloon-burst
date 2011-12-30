@@ -139,6 +139,8 @@ float secondsSinceLastBalloon = 0;
 }
 
 - (CCSprite*) newBalloon {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    
     CCSprite* balloon = [CCSprite spriteWithFile: @"balloon.png"];
     int x = arc4random() % 400;
     int balloonSpeed = arc4random() % 8 + 2;
@@ -150,7 +152,7 @@ float secondsSinceLastBalloon = 0;
     [balloons addObject:balloon];
     
     
-    id moveUp = [CCMoveTo actionWithDuration:balloonSpeed position:ccp(x, 400)];
+    id moveUp = [CCMoveTo actionWithDuration:balloonSpeed position:ccp(x, size.height + 50)];
     id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpBalloon:) data:balloon];
     id seq = [CCSequence actions:moveUp, cleanupAction, nil];
     [balloon runAction:seq];
