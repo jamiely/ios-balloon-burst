@@ -10,6 +10,7 @@
 #import "BalloonLayer.h"
 #import "CCTouchDispatcher.h"
 #import "SimpleAudioEngine.h"
+#import "Game.h"
 
 NSMutableArray *balloons;
 NSMutableArray *treasures;
@@ -17,6 +18,7 @@ CCLabelTTF *lblScore;
 CCLabelTTF *lblTimer;
 NSArray *availableTreasures;
 NSMutableArray *clouds;
+Game *game;
 
 // BalloonLayer implementation
 @implementation BalloonLayer
@@ -36,15 +38,13 @@ NSMutableArray *clouds;
 	return scene;
 }
 
-int score = 0;
-float timeLeft = 0;
 -(void)updateScore: (int) delta{
-    score += delta;
-    [lblScore setString:[[NSString alloc] initWithFormat:@"Score: %04d", score]];
+    game.score += delta;
+    [lblScore setString:[[NSString alloc] initWithFormat:@"Score: %04d", game.score]];
 }
 -(void)updateTime: (float) delta{
-    timeLeft -= delta;
-    [lblTimer setString:[[NSString alloc] initWithFormat:@"Time: %03d", (int)timeLeft]];
+    game.timer -= delta;
+    [lblTimer setString:[[NSString alloc] initWithFormat:@"Time: %03d", (int)game.timer]];
 }
 
 // on "init" you need to initialize your instance
@@ -53,6 +53,8 @@ float timeLeft = 0;
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(204,243,255,255)])) {
+        game = [[Game alloc] init];
+        
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
@@ -81,11 +83,10 @@ float timeLeft = 0;
         [self addChild:lblScore];
         
         // timer display
-        timeLeft = 60;
         lblTimer = [CCLabelTTF labelWithString:@"Time: 000" fontName:@"Helvetica" fontSize:30];
         lblTimer.position = ccp(size.width - lblTimer.boundingBox.size.width/2, size.height-lblTimer.boundingBox.size.height/2);
         lblTimer.color = ccc3(0,0,0);
-        [self addChild:lblTimer];
+        [self addChild:lblTimer];   
 	}
 	return self;
 }

@@ -137,6 +137,7 @@
 		6DCEDCDD14AC305400334A2F /* diamond_juliane_krug_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */; };
 		6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCDE14AC307700334A2F /* treasure_chest.png */; };
 		6DCEDCE114AD179A00334A2F /* spite_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCE014AD179A00334A2F /* spite_cloud.png */; };
+		6DCEDCEC14AD84D000334A2F /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCEB14AD84CF00334A2F /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -390,6 +391,8 @@
 		6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamond_juliane_krug_01.png; path = Resources/diamond_juliane_krug_01.png; sourceTree = "<group>"; };
 		6DCEDCDE14AC307700334A2F /* treasure_chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treasure_chest.png; path = Resources/treasure_chest.png; sourceTree = "<group>"; };
 		6DCEDCE014AD179A00334A2F /* spite_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spite_cloud.png; path = Resources/spite_cloud.png; sourceTree = "<group>"; };
+		6DCEDCEA14AD84CE00334A2F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		6DCEDCEB14AD84CF00334A2F /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +459,8 @@
 				6D11E18214AAC07000F51E9D /* Resources */,
 				6D11E19614AAC07000F51E9D /* libs */,
 				6D11E2CF14AAC07300F51E9D /* Supporting Files */,
+				6DCEDCEA14AD84CE00334A2F /* Game.h */,
+				6DCEDCEB14AD84CF00334A2F /* Game.m */,
 			);
 			path = "balloon-burst";
 			sourceTree = "<group>";
@@ -986,6 +991,7 @@
 				6D11E2D514AAC07300F51E9D /* AppDelegate.m in Sources */,
 				6D11E2D814AAC07300F51E9D /* RootViewController.m in Sources */,
 				6DCEDCCF14AB967800334A2F /* BalloonLayer.m in Sources */,
+				6DCEDCEC14AD84D000334A2F /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
