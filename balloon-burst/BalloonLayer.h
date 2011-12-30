@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface BalloonLayer : CCLayer
+@interface BalloonLayer : CCLayerColor
 {
 }
 
@@ -20,4 +20,5 @@
 -(CCSprite *) newBalloon;
 -(void) cleanUpSprite: (CCSprite*) balloon;
 -(void) popBalloon: (CCSprite*) balloon;
+-(void) setUpClouds;
 @end

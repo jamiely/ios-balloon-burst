@@ -16,6 +16,7 @@ NSMutableArray *balloons;
 NSMutableArray *treasures;
 CCLabelTTF *lblScore;
 NSArray *availableTreasures;
+NSMutableArray *clouds;
 
 // BalloonLayer implementation
 @implementation BalloonLayer
@@ -46,7 +47,7 @@ int score = 0;
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
+	if( (self=[super initWithColor:ccc4(204,243,255,255)])) {
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
     
@@ -76,8 +77,27 @@ int score = 0;
         
         availableTreasures = [[NSArray alloc] initWithObjects:@"GoldenCoin.png", @"treasure_chest.png", @"metal_key.png", @"cupcake_small.png", @"diamond_juliane_krug_01.png", nil];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
+        
+        clouds = [[NSMutableArray alloc] initWithObjects:nil];
+        [self setUpClouds];
 	}
 	return self;
+}
+
+-(void) setUpClouds
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    int cloudCount = 5, distribution = size.height / cloudCount;
+    for(int i = 0; i< cloudCount; i++ ) {
+        CCSprite* cloud = [CCSprite spriteWithFile:@"spite_cloud.png"];
+        cloud.scale = 0.1 + (arc4random() % 3) / 10.0f  ;
+        
+        CGSize rect = cloud.boundingBox.size;
+        cloud.position = ccp(arc4random() % (int) size.width, distribution * i + rect.height/2);
+        
+        [clouds addObject:cloud];
+        [self addChild:cloud];
+    }
 }
 
 // set up the Menus
@@ -134,6 +154,8 @@ int score = 0;
 float secondsSinceLastBalloon = 0;
 
 - (void) nextFrame:(ccTime)dt {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    
     seeker1.position = ccp( seeker1.position.x + 100*dt, seeker1.position.y );
     if (seeker1.position.x > 480+32) {
         seeker1.position = ccp( -32, seeker1.position.y );
@@ -145,6 +167,17 @@ float secondsSinceLastBalloon = 0;
         secondsSinceLastBalloon = 0;
     }
     
+    // all clouds move right
+    for(CCSprite* cloud in clouds) {
+        CGPoint pos = cloud.position;
+        pos.x += dt * 15;
+        CGSize cloudSize = cloud.boundingBox.size;
+        
+        if(pos.x > size.width) {
+            pos.x = -cloudSize.width;
+        }
+        cloud.position = pos;
+    }
 }
 
 - (CCSprite*) newBalloon {
@@ -254,7 +287,7 @@ float secondsSinceLastBalloon = 0;
         CGRect rect = [balloon boundingBox];
         if(CGRectContainsPoint(rect, location)) {
             [self popBalloon:balloon];
-            return;
+            return; // if you don't return here (or handle otherwise), there will be an error (deleting breaks enumeration)
         }
     }
 }
@@ -266,7 +299,7 @@ float secondsSinceLastBalloon = 0;
         CGRect rect = [treasure boundingBox];
         if(CGRectContainsPoint(rect, location)) {
             [self pickupTreasure:treasure];
-            return;
+            return;  // if you don't return here (or handle otherwise), there will be an error (deleting breaks enumeration)
         }
     }
     

@@ -143,6 +143,7 @@
 		6DCEDCDC14AC305400334A2F /* cupcake_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD814AC305400334A2F /* cupcake_small.png */; };
 		6DCEDCDD14AC305400334A2F /* diamond_juliane_krug_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */; };
 		6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCDE14AC307700334A2F /* treasure_chest.png */; };
+		6DCEDCE114AD179A00334A2F /* spite_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCE014AD179A00334A2F /* spite_cloud.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -402,6 +403,7 @@
 		6DCEDCD814AC305400334A2F /* cupcake_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupcake_small.png; path = Resources/cupcake_small.png; sourceTree = "<group>"; };
 		6DCEDCD914AC305400334A2F /* diamond_juliane_krug_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamond_juliane_krug_01.png; path = Resources/diamond_juliane_krug_01.png; sourceTree = "<group>"; };
 		6DCEDCDE14AC307700334A2F /* treasure_chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treasure_chest.png; path = Resources/treasure_chest.png; sourceTree = "<group>"; };
+		6DCEDCE014AD179A00334A2F /* spite_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spite_cloud.png; path = Resources/spite_cloud.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +477,7 @@
 		6D11E18214AAC07000F51E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCE014AD179A00334A2F /* spite_cloud.png */,
 				6DCEDCDE14AC307700334A2F /* treasure_chest.png */,
 				6DCEDCD714AC305400334A2F /* metal_key.png */,
 				6DCEDCD814AC305400334A2F /* cupcake_small.png */,
@@ -902,6 +905,7 @@
 				6DCEDCDC14AC305400334A2F /* cupcake_small.png in Resources */,
 				6DCEDCDD14AC305400334A2F /* diamond_juliane_krug_01.png in Resources */,
 				6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */,
+				6DCEDCE114AD179A00334A2F /* spite_cloud.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
