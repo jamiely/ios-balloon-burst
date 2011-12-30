@@ -67,7 +67,6 @@ int score = 0;
         [self schedule:@selector(nextFrame:)];
         
         self.isTouchEnabled = YES;
-        [self setUpMenus];
         
         // score display
         lblScore = [CCLabelTTF labelWithString:@"Score: 0000" fontName:@"Helvetica" fontSize:30];
@@ -98,51 +97,6 @@ int score = 0;
         [clouds addObject:cloud];
         [self addChild:cloud];
     }
-}
-
-// set up the Menus
--(void) setUpMenus
-{
-    
-	// Create some menu items
-	CCMenuItemImage * menuItem1 = [CCMenuItemImage itemFromNormalImage:@"myfirstbutton.png"
-                                                         selectedImage: @"myfirstbutton_selected.png"
-                                                                target:self
-                                                              selector:@selector(doSomethingOne:)];
-    
-	CCMenuItemImage * menuItem2 = [CCMenuItemImage itemFromNormalImage:@"mysecondbutton.png"
-                                                         selectedImage: @"mysecondbutton_selected.png"
-                                                                target:self
-                                                              selector:@selector(doSomethingTwo:)];
-    
-    
-	CCMenuItemImage * menuItem3 = [CCMenuItemImage itemFromNormalImage:@"mythirdbutton.png"
-                                                         selectedImage: @"mythirdbutton_selected.png"
-                                                                target:self
-                                                              selector:@selector(doSomethingThree:)]; 
-    
-    
-	// Create a menu and add your menu items to it
-	CCMenu * myMenu = [CCMenu menuWithItems:menuItem1, menuItem2, menuItem3, nil];
-    
-	// Arrange the menu items vertically
-	[myMenu alignItemsVertically];
-    
-	// add the menu to your scene
-	[self addChild:myMenu];
-}
-
-- (void) doSomethingOne: (CCMenuItem  *) menuItem 
-{
-	NSLog(@"The first menu was called");
-}
-- (void) doSomethingTwo: (CCMenuItem  *) menuItem 
-{
-	NSLog(@"The second menu was called");
-}
-- (void) doSomethingThree: (CCMenuItem  *) menuItem 
-{
-	NSLog(@"The third menu was called");
 }
 
 -(void) registerWithTouchDispatcher

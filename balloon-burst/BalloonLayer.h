@@ -16,7 +16,6 @@
 
 // returns a CCScene that contains the BalloonLayer as the only child
 +(CCScene *) scene;
--(void) setUpMenus;
 -(CCSprite *) newBalloon;
 -(void) cleanUpSprite: (CCSprite*) balloon;
 -(void) popBalloon: (CCSprite*) balloon;
