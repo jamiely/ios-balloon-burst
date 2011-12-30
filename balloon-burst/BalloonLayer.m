@@ -11,7 +11,6 @@
 #import "CCTouchDispatcher.h"
 #import "SimpleAudioEngine.h"
 
-CCSprite *seeker1;
 NSMutableArray *balloons;
 NSMutableArray *treasures;
 CCLabelTTF *lblScore;
@@ -50,12 +49,6 @@ int score = 0;
 	if( (self=[super initWithColor:ccc4(204,243,255,255)])) {
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
-    
-        
-        // create and initialize our seeker sprite, and add it to this layer
-        seeker1 = [CCSprite spriteWithFile: @"seeker.png"];
-        seeker1.position = ccp( 50, 100 );
-        [self addChild:seeker1];
         
         balloons = [[NSMutableArray alloc] initWithObjects:nil];
         treasures = [[NSMutableArray alloc] initWithObjects:nil];
@@ -109,11 +102,6 @@ float secondsSinceLastBalloon = 0;
 
 - (void) nextFrame:(ccTime)dt {
     CGSize size = [[CCDirector sharedDirector] winSize];
-    
-    seeker1.position = ccp( seeker1.position.x + 100*dt, seeker1.position.y );
-    if (seeker1.position.x > 480+32) {
-        seeker1.position = ccp( -32, seeker1.position.y );
-    }
     
     secondsSinceLastBalloon += dt;
     if(secondsSinceLastBalloon > 2.0f) {

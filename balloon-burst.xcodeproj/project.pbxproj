@@ -121,13 +121,6 @@
 		6D11E2D214AAC07300F51E9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D114AAC07300F51E9D /* main.m */; };
 		6D11E2D514AAC07300F51E9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D414AAC07300F51E9D /* AppDelegate.m */; };
 		6D11E2D814AAC07300F51E9D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D11E2D714AAC07300F51E9D /* RootViewController.m */; };
-		6D11E2E314AAC4BB00F51E9D /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E214AAC4BB00F51E9D /* seeker.png */; };
-		6D11E2EA14AAC86200F51E9D /* myfirstbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */; };
-		6D11E2EB14AAC86200F51E9D /* myfirstbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E514AAC86100F51E9D /* myfirstbutton.png */; };
-		6D11E2EC14AAC86200F51E9D /* mysecondbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E614AAC86100F51E9D /* mysecondbutton_selected.png */; };
-		6D11E2ED14AAC86200F51E9D /* mysecondbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E714AAC86100F51E9D /* mysecondbutton.png */; };
-		6D11E2EE14AAC86200F51E9D /* mythirdbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E814AAC86100F51E9D /* mythirdbutton_selected.png */; };
-		6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D11E2E914AAC86200F51E9D /* mythirdbutton.png */; };
 		6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDC7F14AACF1400334A2F /* red_balloon.png */; };
 		6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */; };
 		6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */; };
@@ -380,13 +373,6 @@
 		6D11E2D614AAC07300F51E9D /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		6D11E2D714AAC07300F51E9D /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6D11E2DC14AAC07300F51E9D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		6D11E2E214AAC4BB00F51E9D /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seeker.png; path = Resources/seeker.png; sourceTree = "<group>"; };
-		6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myfirstbutton_selected.png; path = Resources/myfirstbutton_selected.png; sourceTree = "<group>"; };
-		6D11E2E514AAC86100F51E9D /* myfirstbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myfirstbutton.png; path = Resources/myfirstbutton.png; sourceTree = "<group>"; };
-		6D11E2E614AAC86100F51E9D /* mysecondbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mysecondbutton_selected.png; path = Resources/mysecondbutton_selected.png; sourceTree = "<group>"; };
-		6D11E2E714AAC86100F51E9D /* mysecondbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mysecondbutton.png; path = Resources/mysecondbutton.png; sourceTree = "<group>"; };
-		6D11E2E814AAC86100F51E9D /* mythirdbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mythirdbutton_selected.png; path = Resources/mythirdbutton_selected.png; sourceTree = "<group>"; };
-		6D11E2E914AAC86200F51E9D /* mythirdbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mythirdbutton.png; path = Resources/mythirdbutton.png; sourceTree = "<group>"; };
 		6DCEDC7F14AACF1400334A2F /* red_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_balloon.png; path = Resources/red_balloon.png; sourceTree = "<group>"; };
 		6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stars-grayscale.png"; path = "Resources/stars-grayscale.png"; sourceTree = "<group>"; };
 		6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "background-music-aac.caf"; path = "Resources/background-music-aac.caf"; sourceTree = "<group>"; };
@@ -492,13 +478,6 @@
 				6DCEDCC114AAEB4800334A2F /* background-music-aac.caf */,
 				6DCEDCBF14AAE82F00334A2F /* stars-grayscale.png */,
 				6DCEDC7F14AACF1400334A2F /* red_balloon.png */,
-				6D11E2E414AAC86000F51E9D /* myfirstbutton_selected.png */,
-				6D11E2E514AAC86100F51E9D /* myfirstbutton.png */,
-				6D11E2E614AAC86100F51E9D /* mysecondbutton_selected.png */,
-				6D11E2E714AAC86100F51E9D /* mysecondbutton.png */,
-				6D11E2E814AAC86100F51E9D /* mythirdbutton_selected.png */,
-				6D11E2E914AAC86200F51E9D /* mythirdbutton.png */,
-				6D11E2E214AAC4BB00F51E9D /* seeker.png */,
 				6D11E18314AAC07000F51E9D /* Default.png */,
 				6D11E18514AAC07000F51E9D /* fps_images.png */,
 				6D11E18714AAC07000F51E9D /* Icon-72.png */,
@@ -884,13 +863,6 @@
 				6D11E19014AAC07000F51E9D /* Icon.png in Resources */,
 				6D11E19214AAC07000F51E9D /* Icon@2x.png in Resources */,
 				6D11E19514AAC07000F51E9D /* iTunesArtwork in Resources */,
-				6D11E2E314AAC4BB00F51E9D /* seeker.png in Resources */,
-				6D11E2EA14AAC86200F51E9D /* myfirstbutton_selected.png in Resources */,
-				6D11E2EB14AAC86200F51E9D /* myfirstbutton.png in Resources */,
-				6D11E2EC14AAC86200F51E9D /* mysecondbutton_selected.png in Resources */,
-				6D11E2ED14AAC86200F51E9D /* mysecondbutton.png in Resources */,
-				6D11E2EE14AAC86200F51E9D /* mythirdbutton_selected.png in Resources */,
-				6D11E2EF14AAC86200F51E9D /* mythirdbutton.png in Resources */,
 				6DCEDC8014AACF1400334A2F /* red_balloon.png in Resources */,
 				6DCEDCC014AAE82F00334A2F /* stars-grayscale.png in Resources */,
 				6DCEDCC214AAEB4800334A2F /* background-music-aac.caf in Resources */,
