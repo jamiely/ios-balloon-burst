@@ -14,6 +14,7 @@
 NSMutableArray *balloons;
 NSMutableArray *treasures;
 CCLabelTTF *lblScore;
+CCLabelTTF *lblTimer;
 NSArray *availableTreasures;
 NSMutableArray *clouds;
 
@@ -36,9 +37,14 @@ NSMutableArray *clouds;
 }
 
 int score = 0;
+float timeLeft = 0;
 -(void)updateScore: (int) delta{
     score += delta;
     [lblScore setString:[[NSString alloc] initWithFormat:@"Score: %04d", score]];
+}
+-(void)updateTime: (float) delta{
+    timeLeft -= delta;
+    [lblTimer setString:[[NSString alloc] initWithFormat:@"Time: %03d", (int)timeLeft]];
 }
 
 // on "init" you need to initialize your instance
@@ -61,17 +67,25 @@ int score = 0;
         
         self.isTouchEnabled = YES;
         
-        // score display
-        lblScore = [CCLabelTTF labelWithString:@"Score: 0000" fontName:@"Helvetica" fontSize:30];
-        CGSize lblSize = lblScore.boundingBox.size;
-        lblScore.position = ccp(lblSize.width/2, size.height-lblSize.height/2);
-        [self addChild:lblScore];
-        
         availableTreasures = [[NSArray alloc] initWithObjects:@"GoldenCoin.png", @"treasure_chest.png", @"metal_key.png", @"cupcake_small.png", @"diamond_juliane_krug_01.png", nil];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         
         clouds = [[NSMutableArray alloc] initWithObjects:nil];
         [self setUpClouds];
+        
+        // score display
+        lblScore = [CCLabelTTF labelWithString:@"Score: 0000" fontName:@"Helvetica" fontSize:30];
+        CGSize lblSize = lblScore.boundingBox.size;
+        lblScore.position = ccp(lblSize.width/2, size.height-lblSize.height/2);
+        lblScore.color = ccc3(0, 0, 0);
+        [self addChild:lblScore];
+        
+        // timer display
+        timeLeft = 60;
+        lblTimer = [CCLabelTTF labelWithString:@"Time: 000" fontName:@"Helvetica" fontSize:30];
+        lblTimer.position = ccp(size.width - lblTimer.boundingBox.size.width/2, size.height-lblTimer.boundingBox.size.height/2);
+        lblTimer.color = ccc3(0,0,0);
+        [self addChild:lblTimer];
 	}
 	return self;
 }
@@ -102,6 +116,8 @@ float secondsSinceLastBalloon = 0;
 
 - (void) nextFrame:(ccTime)dt {
     CGSize size = [[CCDirector sharedDirector] winSize];
+    
+    [self updateTime: dt];
     
     secondsSinceLastBalloon += dt;
     if(secondsSinceLastBalloon > 2.0f) {
