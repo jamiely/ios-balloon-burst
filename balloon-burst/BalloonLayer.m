@@ -234,10 +234,11 @@ float secondsSinceLastBalloon = 0;
 
 - (Balloon*) newBalloon {
     Balloon* balloon = [game newBalloon];
-    int x = arc4random() % (int)(windowSize_.width + balloon.sprite.boundingBox.size.width/2);
+    int full = balloon.sprite.boundingBox.size.width * 0.75;
+    int x = arc4random() % (int)(windowSize_.width - full) + full;
     
     balloon.sprite.scale *= globalScale_;
-    [balloon setPosition: ccp(x, -10)];
+    [balloon setPosition: ccp(x, -balloon.sprite.boundingBox.size.height)];
     
     [self addChild:balloon.sprite];
     [self addChild:balloon.label];
@@ -303,6 +304,7 @@ float secondsSinceLastBalloon = 0;
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     
     [self explosionAt: pos.x y: pos.y];
+    [self cleanUpSprite:balloon.label];
     [self cleanUpBalloon:balloon.sprite data: balloon];
 }
 

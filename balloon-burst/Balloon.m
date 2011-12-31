@@ -10,23 +10,50 @@
 
 @implementation Balloon
 
-@synthesize sprite = sprite_, label = label_, speed = speed_, scale = scale_;
+@synthesize sprite = sprite_, label = label_, speed = speed_;
 
--(id) init:(CCSprite*) sprite
+-(id) init:(float) scale sprite: (CCSprite*) sprite
 {
     return [self initWithString: sprite string:@""];
 }
 
--(id) initWithString:(CCSprite*) sprite string: (NSString*) string
+-(id) initWithString:(float) scale sprite: (CCSprite*) sprite string: (NSString*) string
 {
     speed_ = 30.0f; // 30 px a second
     scale_ = 0.1f;
     sprite.scale = scale_;
     
     sprite_ = sprite;
-    label_ = [CCLabelTTF labelWithString:string fontName:@"Helvetica" fontSize:40];
-    label_.position = sprite.position;
+    string_ = string;
+    
+    [self setScale:scale];
+    
+    int fontSize = 90;
+    if(scale < 0.04) {
+        fontSize = 20;
+    }
+    else if(scale < 0.08) {
+        fontSize = 30;
+    }
+    else if(scale < 0.1) {
+        fontSize = 40;
+    }
+    else if(scale < 0.12) {
+        fontSize = 60;
+    }
+    else if(scale < 0.15) {
+        fontSize = 80;
+    }
+
+    [self initLabel:fontSize];
+    
     return self;
+}
+
+-(void) initLabel:(int) fontSize
+{
+    label_ = [CCLabelTTF labelWithString:string_ fontName:@"Helvetica" fontSize:fontSize];
+    label_.position = sprite_.position;
 }
 
 -(void) setPosition:(CGPoint) position
@@ -47,5 +74,11 @@
 -(void) setString:(NSString *)string
 {
     [self.label setString:string];
+}
+
+-(void) setScale:(float)scale
+{
+    scale_ = scale;
+    sprite_.scale = scale;
 }
 @end

@@ -15,17 +15,20 @@
     CCLabelTTF* label_;
     float speed_;
     float scale_;
+    NSString* string_;
 }
 
 @property (readwrite, retain) CCSprite* sprite;
 @property (readwrite, retain) CCLabelTTF* label;
 @property (readwrite, assign) float speed;
-@property (readwrite, assign) float scale;
 
--(id) init:(CCSprite*) sprite;
--(id) initWithString:(CCSprite*) sprite string:(NSString*) string;
+-(id) init:(float) scale sprite:(CCSprite*) sprite;
+-(id) initWithString:(float) scale sprite:(CCSprite*) sprite string:(NSString*) string;
 -(void) raise:(float) delta;
 -(void) setString:(NSString*) string;
 -(void) setPosition:(CGPoint) position;
+-(void) setScale:(float) scale;
+
+-(void) initLabel:(int) fontSize;
 
 @end
