@@ -138,6 +138,9 @@
 		6DCEDCDF14AC307700334A2F /* treasure_chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCDE14AC307700334A2F /* treasure_chest.png */; };
 		6DCEDCE114AD179A00334A2F /* spite_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDCE014AD179A00334A2F /* spite_cloud.png */; };
 		6DCEDCEC14AD84D000334A2F /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCEB14AD84CF00334A2F /* Game.m */; };
+		6DCEDCEF14AD89E200334A2F /* DropItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCEE14AD89E200334A2F /* DropItem.m */; };
+		6DCEDCF214AD8E5500334A2F /* Balloon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCF114AD8E5400334A2F /* Balloon.m */; };
+		6DCEDCF814AE625700334A2F /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEDCF714AE625500334A2F /* MenuLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -393,6 +396,12 @@
 		6DCEDCE014AD179A00334A2F /* spite_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spite_cloud.png; path = Resources/spite_cloud.png; sourceTree = "<group>"; };
 		6DCEDCEA14AD84CE00334A2F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		6DCEDCEB14AD84CF00334A2F /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		6DCEDCED14AD89E100334A2F /* DropItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropItem.h; sourceTree = "<group>"; };
+		6DCEDCEE14AD89E200334A2F /* DropItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropItem.m; sourceTree = "<group>"; };
+		6DCEDCF014AD8E5400334A2F /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
+		6DCEDCF114AD8E5400334A2F /* Balloon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balloon.m; sourceTree = "<group>"; };
+		6DCEDCF614AE625500334A2F /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		6DCEDCF714AE625500334A2F /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,18 +458,24 @@
 		6D11E18114AAC07000F51E9D /* balloon-burst */ = {
 			isa = PBXGroup;
 			children = (
+				6DCEDCF614AE625500334A2F /* MenuLayer.h */,
+				6DCEDCF714AE625500334A2F /* MenuLayer.m */,
 				6DCEDCCD14AB967800334A2F /* BalloonLayer.h */,
 				6DCEDCCE14AB967800334A2F /* BalloonLayer.m */,
+				6DCEDCF014AD8E5400334A2F /* Balloon.h */,
+				6DCEDCF114AD8E5400334A2F /* Balloon.m */,
 				6D11E2D314AAC07300F51E9D /* AppDelegate.h */,
 				6D11E2D414AAC07300F51E9D /* AppDelegate.m */,
 				6D11E2D614AAC07300F51E9D /* RootViewController.h */,
 				6D11E2D714AAC07300F51E9D /* RootViewController.m */,
 				6D11E2DC14AAC07300F51E9D /* GameConfig.h */,
+				6DCEDCEA14AD84CE00334A2F /* Game.h */,
+				6DCEDCEB14AD84CF00334A2F /* Game.m */,
+				6DCEDCED14AD89E100334A2F /* DropItem.h */,
+				6DCEDCEE14AD89E200334A2F /* DropItem.m */,
 				6D11E18214AAC07000F51E9D /* Resources */,
 				6D11E19614AAC07000F51E9D /* libs */,
 				6D11E2CF14AAC07300F51E9D /* Supporting Files */,
-				6DCEDCEA14AD84CE00334A2F /* Game.h */,
-				6DCEDCEB14AD84CF00334A2F /* Game.m */,
 			);
 			path = "balloon-burst";
 			sourceTree = "<group>";
@@ -992,6 +1007,9 @@
 				6D11E2D814AAC07300F51E9D /* RootViewController.m in Sources */,
 				6DCEDCCF14AB967800334A2F /* BalloonLayer.m in Sources */,
 				6DCEDCEC14AD84D000334A2F /* Game.m in Sources */,
+				6DCEDCEF14AD89E200334A2F /* DropItem.m in Sources */,
+				6DCEDCF214AD8E5500334A2F /* Balloon.m in Sources */,
+				6DCEDCF814AE625700334A2F /* MenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +1020,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jamie Ly (7PSWANMVJK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1014,6 +1033,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "B2CAD31B-9834-4BEB-AC4F-C88A720B2891";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1022,6 +1042,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jamie Ly (7PSWANMVJK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
@@ -1030,6 +1051,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "B2CAD31B-9834-4BEB-AC4F-C88A720B2891";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

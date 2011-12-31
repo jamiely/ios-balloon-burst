@@ -8,14 +8,18 @@
 
 // Import the interfaces
 #import "BalloonLayer.h"
+#import "MenuLayer.h"
 #import "CCTouchDispatcher.h"
 #import "SimpleAudioEngine.h"
-#import "Game.h"
 
-NSMutableArray *balloons;
-NSMutableArray *treasures;
 CCLabelTTF *lblScore;
 CCLabelTTF *lblTimer;
+CCLabelTTF *lblGameOver;
+CCLabelTTF *lblRound;
+
+ccColor3B black;
+NSString* font;
+
 NSArray *availableTreasures;
 NSMutableArray *clouds;
 Game *game;
@@ -40,7 +44,8 @@ Game *game;
 
 -(void)updateScore: (int) delta{
     game.score += delta;
-    [lblScore setString:[[NSString alloc] initWithFormat:@"Score: %04d", game.score]];
+    [lblScore setString:[[NSString alloc] initWithFormat:@"Treasures Collected: %02d/%02d", 
+                         game.treasuresCollected, game.treasuresNeeded]];
 }
 -(void)updateTime: (float) delta{
     game.timer -= delta;
@@ -53,13 +58,16 @@ Game *game;
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(204,243,255,255)])) {
+        globalScale_ = 2;
+        
+        black = ccc3(0, 0, 0);
+        font = @"Helvetica";
+        
         game = [[Game alloc] init];
         
         // ask director the the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-        
-        balloons = [[NSMutableArray alloc] initWithObjects:nil];
-        treasures = [[NSMutableArray alloc] initWithObjects:nil];
+		windowSize_ = [[CCDirector sharedDirector] winSize];
+        windowCenter_ = ccp(windowSize_.width / 2, windowSize_.height / 2);
         
         // create an initial balloon
         [self newBalloon];
@@ -76,19 +84,72 @@ Game *game;
         [self setUpClouds];
         
         // score display
-        lblScore = [CCLabelTTF labelWithString:@"Score: 0000" fontName:@"Helvetica" fontSize:30];
+        lblScore = [CCLabelTTF labelWithString:@"Treasures Collected: 00/00" fontName:font fontSize:30];
         CGSize lblSize = lblScore.boundingBox.size;
-        lblScore.position = ccp(lblSize.width/2, size.height-lblSize.height/2);
-        lblScore.color = ccc3(0, 0, 0);
+        lblScore.position = ccp(lblSize.width/2, windowSize_.height-lblSize.height/2);
+        lblScore.color = black;
         [self addChild:lblScore];
         
         // timer display
-        lblTimer = [CCLabelTTF labelWithString:@"Time: 000" fontName:@"Helvetica" fontSize:30];
-        lblTimer.position = ccp(size.width - lblTimer.boundingBox.size.width/2, size.height-lblTimer.boundingBox.size.height/2);
-        lblTimer.color = ccc3(0,0,0);
+        lblTimer = [CCLabelTTF labelWithString:@"Time: 000" fontName:font fontSize:30];
+        lblTimer.position = ccp(windowSize_.width - lblTimer.boundingBox.size.width/2, 
+                                windowSize_.height-lblTimer.boundingBox.size.height/2);
+        lblTimer.color = black;
         [self addChild:lblTimer];   
+        
+        lblRound = [CCLabelTTF labelWithString:@"Round 1" fontName:font fontSize:72];
+        lblRound.position = windowCenter_;
+        lblRound.color = black;
+        [self addChild:lblRound];
+        [self showRound];
+        
+        
+        [self updateScore: 0];
+        
+        [self setUpMenu];
+        
+        // game over
+        lblGameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:font fontSize:72];
+        lblGameOver.position = ccp(windowCenter_.x, windowCenter_.y + 50);
+        lblGameOver.color = black;
+        lblGameOver.visible = false;
+        [self addChild:lblGameOver];
+        
+        
 	}
 	return self;
+}
+
+-(void) setUpMenu 
+{
+    CCLabelTTF *lblMainMenu = [CCLabelTTF labelWithString:@"Main Menu" fontName:font fontSize:30];
+    lblMainMenu.color = black;
+    
+    CCMenuItemLabel *mainMenu = [CCMenuItemLabel itemWithLabel:lblMainMenu target:self selector:@selector(gotoMainMenu:)];
+    menu_ = [CCMenu menuWithItems:mainMenu, nil];
+    menu_.visible = false;
+    [self addChild:menu_];
+}
+
+-(void) gotoMainMenu: (CCMenuItem*) menuItem
+{
+    [[CCDirector sharedDirector] replaceScene:[MenuLayer scene]];
+}
+
+
+-(void) showRound
+{
+    lblRound.string = [[NSString alloc] initWithFormat:@"Round %d", game.round];
+    lblRound.visible = true;
+    [lblRound runAction:[CCFadeOut actionWithDuration:2]];   
+}
+
+-(void) nextRound 
+{
+    [game nextRound];
+    [self updateScore:0];
+    
+    [self showRound];
 }
 
 -(void) setUpClouds
@@ -116,51 +177,71 @@ Game *game;
 float secondsSinceLastBalloon = 0;
 
 - (void) nextFrame:(ccTime)dt {
-    CGSize size = [[CCDirector sharedDirector] winSize];
+    [self updateClouds:dt];
     
+    if([game isGameOver]) {
+        [self showGameOver];
+        return;
+    }
+    else if([game isRoundComplete]) {
+        [self nextRound];
+    }
+
     [self updateTime: dt];
+    [self updateBalloons:dt];
+}
+
+- (void) updateBalloons:(ccTime)dt {
+    // raise all balloons
+    for(Balloon* balloon in game.balloons) {
+        [balloon raise:dt * 50.0f];
+    }
     
     secondsSinceLastBalloon += dt;
-    if(secondsSinceLastBalloon > 2.0f) {
+    if(secondsSinceLastBalloon > game.balloonPace) {
         [self newBalloon];
         secondsSinceLastBalloon = 0;
     }
-    
+}
+
+- (void) updateClouds:(ccTime)dt {
     // all clouds move right
     for(CCSprite* cloud in clouds) {
         CGPoint pos = cloud.position;
         pos.x += dt * 15;
         CGSize cloudSize = cloud.boundingBox.size;
         
-        if(pos.x > size.width) {
+        if(pos.x > windowSize_.width) {
             pos.x = -cloudSize.width;
         }
         cloud.position = pos;
     }
 }
 
-- (CCSprite*) newBalloon {
-    CGSize size = [[CCDirector sharedDirector] winSize];
-    
-    CCSprite* balloon = [CCSprite spriteWithFile: @"balloon.png"];
-    int x = arc4random() % 400;
-    int balloonSpeed = arc4random() % 8 + 2;
-    
-    NSLog(@"newBalloon x: %d", x);
-    balloon.position = ccp(x, 0);
-    balloon.scale = balloonSpeed/60.0f;
-    [self addChild:balloon];
-    [balloons addObject:balloon];
-    
-    
-    id moveUp = [CCMoveTo actionWithDuration:balloonSpeed position:ccp(x, size.height + 50)];
-    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpBalloon:) data:balloon];
-    id seq = [CCSequence actions:moveUp, cleanupAction, nil];
-    [balloon runAction:seq];
+- (void) showGameOver {
+    lblGameOver.visible = true;
 
+    // pop all balloons
+    NSArray *balloons = [[NSArray alloc] initWithArray:game.balloons];
+    for(Balloon* balloon in balloons) {
+        [self popBalloon:balloon];
+    }
     
-    NSLog(@"Balloon count: %i", balloons.count);
+    menu_.visible = true;
+    
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+}
 
+- (Balloon*) newBalloon {
+    Balloon* balloon = [game newBalloon];
+    int x = arc4random() % (int)(windowSize_.width + balloon.sprite.boundingBox.size.width/2);
+    
+    balloon.sprite.scale *= globalScale_;
+    [balloon setPosition: ccp(x, -10)];
+    
+    [self addChild:balloon.sprite];
+    [self addChild:balloon.label];
+    
     return balloon;
 }
 
@@ -173,15 +254,15 @@ float secondsSinceLastBalloon = 0;
     [self addChild:emitter];
 }
 
-- (void) cleanUpBalloon:(CCSprite*) balloon {
-    [balloons removeObject:balloon];
-    [self cleanUpSprite:balloon];
+- (void) cleanUpBalloon:(id) sender data:(Balloon*) balloon {
+    [game removeBalloon:balloon];
+    [self cleanUpSprite:sender];
 }
 
-- (void) cleanUpTreasure:(CCSprite*) treasure {
-    [treasures removeObject:treasure];
-    [treasure stopAllActions];
-    [self cleanUpSprite:treasure];
+- (void) cleanUpTreasure:(id) sender data: (DropItem*)treasure {
+    [game removeDropItem:treasure];
+    [sender stopAllActions];
+    [self cleanUpSprite:sender];
 }
 
 
@@ -193,40 +274,43 @@ float secondsSinceLastBalloon = 0;
 }
 
 
-- (CCSprite*) dropTreasure:(NSString*) spriteFile x: (float) x y: (float) y {
-    CCSprite* treasure = [CCSprite spriteWithFile:spriteFile];
-    treasure.position = ccp(x,y);
-    treasure.scale = 0.05;
-    [self addChild:treasure];
-    [treasures addObject:treasure];
+- (DropItem*) dropTreasure:(NSString*) spriteFile x: (float) x y: (float) y {
+    DropItem* treasure = [game newDropItem:kTreasure sprite:[CCSprite spriteWithFile:spriteFile]];
+
+    treasure.sprite.position = ccp(x,y);
+    treasure.sprite.scale = 0.05 * globalScale_;
+    [self addChild:treasure.sprite];
     
     id moveDown = [CCMoveTo actionWithDuration:1 position:ccp(x, -10)];
     
     int rotateSign = arc4random() % 2 == 0 ? 1 : -1;
     
     id rotateTo = [CCRotateTo actionWithDuration:1 angle:rotateSign * 180];
-    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpTreasure:) data:treasure];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpTreasure:data:) data:treasure];
     id seq = [CCSequence actions:moveDown, cleanupAction, nil];
-    [treasure runAction:seq];
-    [treasure runAction:rotateTo];
+    [treasure.sprite runAction:seq];
+    [treasure.sprite runAction:rotateTo];
     
     return treasure;
 }
 
 
-- (void) popBalloon:(CCSprite*) balloon {
-    [self updateScore: 10];
+- (void) popBalloon:(Balloon*) balloon {
     NSString* treasureName = [availableTreasures objectAtIndex: arc4random() % availableTreasures.count];
-    [self dropTreasure: treasureName x: balloon.position.x y:balloon.position.y];
+    
+    CGPoint pos = balloon.sprite.position;
+    [self dropTreasure: treasureName x: pos.x y:pos.y];
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
-    [self explosionAt: balloon.position.x y:balloon.position.y];
-    [self cleanUpBalloon:balloon];
+    
+    [self explosionAt: pos.x y: pos.y];
+    [self cleanUpBalloon:balloon.sprite data: balloon];
 }
 
-- (void) pickupTreasure:(CCSprite*) treasure {
-    [self updateScore: 15];
+- (void) pickupTreasure:(DropItem*) treasure {
+    game.treasuresCollected ++;
+    [self updateScore: 1];
     [[SimpleAudioEngine sharedEngine] playEffect:@"belt_buckle_clink.mp3"];
-    [self cleanUpTreasure:treasure];
+    [self cleanUpTreasure:treasure.sprite data: treasure];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -242,10 +326,12 @@ float secondsSinceLastBalloon = 0;
 }
 
 - (void) checkTouchBalloons: (CGPoint) location {
+    if([game isGameOver]) return;
+    
     // check balloons
-    for(CCSprite* balloon in balloons) {
+    for(Balloon* balloon in game.balloons) {
         // we have to refine this bounding box later
-        CGRect rect = [balloon boundingBox];
+        CGRect rect = [balloon.sprite boundingBox];
         if(CGRectContainsPoint(rect, location)) {
             [self popBalloon:balloon];
             return; // if you don't return here (or handle otherwise), there will be an error (deleting breaks enumeration)
@@ -255,9 +341,9 @@ float secondsSinceLastBalloon = 0;
 
 - (void) checkTouchTreasure: (CGPoint) location {
     // check treasures first, so we don't drop something just to pick it up
-    for(CCSprite* treasure in treasures) {
+    for(DropItem* treasure in game.dropItems) {
         // we have to refine this bounding box later
-        CGRect rect = [treasure boundingBox];
+        CGRect rect = [treasure.sprite boundingBox];
         if(CGRectContainsPoint(rect, location)) {
             [self pickupTreasure:treasure];
             return;  // if you don't return here (or handle otherwise), there will be an error (deleting breaks enumeration)
