@@ -20,6 +20,8 @@
     int round_;
     float balloonPace_;
     
+    NSArray* words_;
+    NSMutableDictionary* _wordLookup;
     NSMutableArray* dropItems_;
     NSMutableArray* balloons_;
 }

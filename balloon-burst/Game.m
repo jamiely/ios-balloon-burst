@@ -29,6 +29,20 @@ int timerStart;
     self.treasuresNeeded = 3;
     self.balloonPace = 2.0f;
     
+    words_ = [@"APPLE,ANTLER,AXLE,BABY,CAT,DOG,EGG,FOOT,GIRL,HOME,ICE,JUMP,KITE,LION,MOM,NEST,ONION,PIG,QUIET,ROSE,STAR,TIN,UMBRELLA,VAN,WIN,XYLOPHONE,ZEBRA" componentsSeparatedByString:@","];
+    
+    // initialize lookup
+    _wordLookup = [[NSMutableDictionary alloc] init];
+    for(NSString* word in words_) {
+        NSString* firstLetter = [word substringToIndex:1];
+        NSMutableArray* letterWords = [_wordLookup objectForKey:firstLetter];
+        if(letterWords == nil) {
+            letterWords = [[NSMutableArray alloc] init];
+            [_wordLookup setObject:letterWords forKey:firstLetter];
+        }
+        [letterWords addObject:word];
+    }
+    
     balloons_ = [[NSMutableArray alloc] init];
     dropItems_ = [[NSMutableArray alloc] init]; 
     
