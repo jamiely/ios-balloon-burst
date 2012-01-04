@@ -19,7 +19,7 @@ int timerStart;
 
 -(id) init
 {
-    timerStart = 15;
+    timerStart = 20;
     treasuresToAddNextRound = 2;
     
     self.treasuresCollected = 0;
@@ -32,13 +32,13 @@ int timerStart;
     words_ = [@"APPLE,ANTLER,AXLE,BABY,CAT,DOG,EGG,FOOT,GIRL,HOME,ICE,JUMP,KITE,LION,MOM,NEST,ONION,PIG,QUIET,ROSE,STAR,TIN,UMBRELLA,VAN,WIN,XYLOPHONE,ZEBRA" componentsSeparatedByString:@","];
     
     // initialize lookup
-    _wordLookup = [[NSMutableDictionary alloc] init];
+    wordLookup_ = [[NSMutableDictionary alloc] init];
     for(NSString* word in words_) {
         NSString* firstLetter = [word substringToIndex:1];
-        NSMutableArray* letterWords = [_wordLookup objectForKey:firstLetter];
+        NSMutableArray* letterWords = [wordLookup_ objectForKey:firstLetter];
         if(letterWords == nil) {
             letterWords = [[NSMutableArray alloc] init];
-            [_wordLookup setObject:letterWords forKey:firstLetter];
+            [wordLookup_ setObject:letterWords forKey:firstLetter];
         }
         [letterWords addObject:word];
     }
@@ -108,9 +108,15 @@ int timerStart;
     return balloon;
 }
 
--(DropItem*) newDropItem:(DropItemType)type sprite:(CCSprite *)sprite
+-(NSString*) getWord:(NSString*) letter {
+    NSArray *words = [wordLookup_ objectForKey:letter];
+    return [words objectAtIndex:0];
+}
+
+-(DropItem*) newDropItem:(Balloon*) balloon
 {
-    DropItem* item = [[DropItem alloc] initWithType:type scoreValue:15 sprite:sprite];
+    NSString *word = [self getWord:balloon.string];
+    DropItem* item = [[DropItem alloc] initWithString:word scoreValue:15];
     [dropItems_ addObject:item];
     return item;
 }

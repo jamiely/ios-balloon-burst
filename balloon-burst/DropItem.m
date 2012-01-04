@@ -10,13 +10,12 @@
 
 @implementation DropItem
 
-@synthesize itemType = itemType_, scoreValue = scoreValue_, sprite = sprite_;
+@synthesize string = string_, scoreValue = scoreValue_, sprite = sprite_;
 
--(id) initWithType:(DropItemType)type scoreValue:(int)scoreVal sprite:(CCSprite *)sprite 
+-(id) initWithString:(NSString *)string scoreValue:(int)scoreVal
 {
-    self.itemType = type;
+    self.string = string;
     self.scoreValue = scoreVal;
-    self.sprite = sprite;
     
     return self;
 }

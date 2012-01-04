@@ -20,6 +20,7 @@
 
 @property (readwrite, retain) CCSprite* sprite;
 @property (readwrite, retain) CCLabelTTF* label;
+@property (readwrite, retain) NSString* string;
 @property (readwrite, assign) float speed;
 
 -(id) init:(float) scale sprite:(CCSprite*) sprite;

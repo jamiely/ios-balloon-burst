@@ -4,9 +4,9 @@ Pop balloons.
 
 # Todo
 
- * Rounds
  * Better size adjustment between iPad and iPhone
  * Negative drop items
+ * Make balloon CCNode.
 
 # Credits
 

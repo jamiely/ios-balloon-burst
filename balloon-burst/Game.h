@@ -21,7 +21,7 @@
     float balloonPace_;
     
     NSArray* words_;
-    NSMutableDictionary* _wordLookup;
+    NSMutableDictionary* wordLookup_;
     NSMutableArray* dropItems_;
     NSMutableArray* balloons_;
 }
@@ -44,7 +44,7 @@
 -(Boolean) isGameOver;
 -(Boolean) isTimeUp;
 -(Balloon*) newBalloon;
--(DropItem*) newDropItem:(DropItemType) type sprite:(CCSprite*) sprite;
+-(DropItem*) newDropItem:(Balloon*) balloon;
 -(void) removeDropItem:(id)object;
 -(void) removeBalloon:(id)object;
 

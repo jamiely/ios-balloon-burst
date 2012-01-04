@@ -10,11 +10,11 @@
 
 @implementation Balloon
 
-@synthesize sprite = sprite_, label = label_, speed = speed_;
+@synthesize sprite = sprite_, label = label_, speed = speed_, string = string_;
 
 -(id) init:(float) scale sprite: (CCSprite*) sprite
 {
-    return [self initWithString: sprite string:@""];
+    return [self initWithString: scale sprite: sprite string:@""];
 }
 
 -(id) initWithString:(float) scale sprite: (CCSprite*) sprite string: (NSString*) string

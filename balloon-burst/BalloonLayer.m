@@ -275,32 +275,33 @@ float secondsSinceLastBalloon = 0;
 }
 
 
-- (DropItem*) dropTreasure:(NSString*) spriteFile x: (float) x y: (float) y {
-    DropItem* treasure = [game newDropItem:kTreasure sprite:[CCSprite spriteWithFile:spriteFile]];
-
-    treasure.sprite.position = ccp(x,y);
-    treasure.sprite.scale = 0.05 * globalScale_;
+- (DropItem*) dropTreasure:(Balloon*) balloon {
+    DropItem* treasure = [game newDropItem:balloon];
+    
+    CCLabelTTF *wordLabel = [CCLabelTTF labelWithString:treasure.string fontName:@"Helvetica" fontSize:30];
+    wordLabel.color = black;
+    
+    treasure.sprite = wordLabel;
+    
+    CGPoint pos = balloon.sprite.position;
+    treasure.sprite.position = pos;
+    treasure.sprite.scale = 1;
+    
     [self addChild:treasure.sprite];
     
-    id moveDown = [CCMoveTo actionWithDuration:1 position:ccp(x, -10)];
+    id moveDown = [CCMoveTo actionWithDuration:1 position:ccp(pos.x, -10)];
     
-    int rotateSign = arc4random() % 2 == 0 ? 1 : -1;
-    
-    id rotateTo = [CCRotateTo actionWithDuration:1 angle:rotateSign * 180];
     id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpTreasure:data:) data:treasure];
     id seq = [CCSequence actions:moveDown, cleanupAction, nil];
     [treasure.sprite runAction:seq];
-    [treasure.sprite runAction:rotateTo];
     
     return treasure;
 }
 
 
 - (void) popBalloon:(Balloon*) balloon {
-    NSString* treasureName = [availableTreasures objectAtIndex: arc4random() % availableTreasures.count];
-    
     CGPoint pos = balloon.sprite.position;
-    [self dropTreasure: treasureName x: pos.x y:pos.y];
+    [self dropTreasure: balloon];
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     
     [self explosionAt: pos.x y: pos.y];

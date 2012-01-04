@@ -21,15 +21,15 @@ typedef enum {
 @interface DropItem : NSObject
 {
     int scoreValue_;
-    DropItemType itemType_;
     // for now, we'll also store sprites here, but it should be factored out later.
     CCSprite *sprite_;
+    NSString *string_; 
 }
 
 @property (readwrite, assign) int scoreValue;
-@property (readwrite, assign) DropItemType itemType;
 @property (readwrite, retain) CCSprite* sprite;
+@property (readwrite, retain) NSString* string;
 
--(id) initWithType: (DropItemType) type scoreValue: (int) scoreVal sprite: (CCSprite*) sprite; 
+-(id) initWithString: (NSString*) string scoreValue: (int) scoreVal;
 
 @end
