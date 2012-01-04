@@ -20,7 +20,6 @@ CCLabelTTF *lblRound;
 ccColor3B black;
 NSString* font;
 
-NSArray *availableTreasures;
 NSMutableArray *clouds;
 Game *game;
 
@@ -44,7 +43,7 @@ Game *game;
 
 -(void)updateScore: (int) delta{
     game.score += delta;
-    [lblScore setString:[[NSString alloc] initWithFormat:@"Treasures Collected: %02d/%02d", 
+    [lblScore setString:[[NSString alloc] initWithFormat:@"Words Collected: %02d/%02d", 
                          game.treasuresCollected, game.treasuresNeeded]];
 }
 -(void)updateTime: (float) delta{
@@ -77,7 +76,6 @@ Game *game;
         
         self.isTouchEnabled = YES;
         
-        availableTreasures = [[NSArray alloc] initWithObjects:@"GoldenCoin.png", @"treasure_chest.png", @"metal_key.png", @"cupcake_small.png", @"diamond_juliane_krug_01.png", nil];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
         
@@ -279,7 +277,7 @@ float secondsSinceLastBalloon = 0;
 - (DropItem*) dropTreasure:(Balloon*) balloon {
     DropItem* treasure = [game newDropItem:balloon];
     
-    CCLabelTTF *wordLabel = [CCLabelTTF labelWithString:treasure.string fontName:@"Helvetica" fontSize:30];
+    CCLabelTTF *wordLabel = [CCLabelTTF labelWithString:treasure.string fontName:font fontSize:30];
     wordLabel.color = black;
     
     treasure.sprite = wordLabel;
