@@ -29,7 +29,7 @@ int timerStart;
     self.treasuresNeeded = 3;
     self.balloonPace = 2.0f;
     
-    words_ = [@"APPLE,ANTLER,AXLE,BABY,CAT,DOG,EGG,FOOT,GIRL,HOME,ICE,JUMP,KITE,LION,MOM,NEST,ONION,PIG,QUIET,ROSE,STAR,TIN,UMBRELLA,VAN,WIN,XYLOPHONE,ZEBRA" componentsSeparatedByString:@","];
+    words_ = [@"APPLE,ANTLER,AXLE,BABY,CAT,DOG,EGG,FOOT,GIRL,HOME,ICE,JUMP,KITE,LION,MOM,NEST,ONION,PIG,QUIET,ROSE,STAR,TIN,UMBRELLA,VAN,WIN,XYLOPHONE,YELLOW,ZEBRA" componentsSeparatedByString:@","];
     
     // initialize lookup
     wordLookup_ = [[NSMutableDictionary alloc] init];

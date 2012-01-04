@@ -79,6 +79,7 @@ Game *game;
         
         availableTreasures = [[NSArray alloc] initWithObjects:@"GoldenCoin.png", @"treasure_chest.png", @"metal_key.png", @"cupcake_small.png", @"diamond_juliane_krug_01.png", nil];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
         
         clouds = [[NSMutableArray alloc] initWithObjects:nil];
         [self setUpClouds];
@@ -302,7 +303,8 @@ float secondsSinceLastBalloon = 0;
 - (void) popBalloon:(Balloon*) balloon {
     CGPoint pos = balloon.sprite.position;
     [self dropTreasure: balloon];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3" pitch:1 pan:1 gain:0.1f];
     
     [self explosionAt: pos.x y: pos.y];
     [self cleanUpSprite:balloon.label];
@@ -312,7 +314,7 @@ float secondsSinceLastBalloon = 0;
 - (void) pickupTreasure:(DropItem*) treasure {
     game.treasuresCollected ++;
     [self updateScore: 1];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"belt_buckle_clink.mp3"];
+    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.m4a", treasure.string]];
     [self cleanUpTreasure:treasure.sprite data: treasure];
 }
 
