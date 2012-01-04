@@ -32,6 +32,19 @@
         CCMenuItemLabel *start = [CCMenuItemLabel itemWithLabel:[self getDefaultLabel: @"Start"] target:self selector:@selector(startGame:)];
         menu_ = [CCMenu menuWithItems:start, nil];
         [self addChild:menu_];
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"story" ofType:@"txt"];
+        NSString *story = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        
+        CGSize windowSize_ = [[CCDirector sharedDirector] winSize];
+        
+        CGSize dimensions = [story sizeWithFont:[UIFont fontWithName:@"Helvetica" size:20] constrainedToSize:windowSize_ lineBreakMode:UILineBreakModeWordWrap];
+        
+        CCLabelTTF *lblStory = [CCLabelTTF labelWithString:story dimensions:dimensions alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap fontName:@"Helvetica" fontSize:20];
+        
+        lblStory.position = ccp(windowSize_.width / 2, 100);
+        lblStory.color = ccc3(0, 0, 0);
+        [self addChild:lblStory];
     }
     
     return self;

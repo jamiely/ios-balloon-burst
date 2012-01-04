@@ -159,6 +159,7 @@
 		6DCEDD3F14B3F1A900334A2F /* xylophone.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDD2314B3F1A900334A2F /* xylophone.m4a */; };
 		6DCEDD4014B3F1A900334A2F /* yellow.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDD2414B3F1A900334A2F /* yellow.m4a */; };
 		6DCEDD4114B3F1A900334A2F /* zebra.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDD2514B3F1A900334A2F /* zebra.m4a */; };
+		6DCEDD4314B3F6D100334A2F /* story.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEDD4214B3F6D100334A2F /* story.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -438,6 +439,7 @@
 		6DCEDD2314B3F1A900334A2F /* xylophone.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = xylophone.m4a; path = Resources/words/xylophone.m4a; sourceTree = "<group>"; };
 		6DCEDD2414B3F1A900334A2F /* yellow.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = yellow.m4a; path = Resources/words/yellow.m4a; sourceTree = "<group>"; };
 		6DCEDD2514B3F1A900334A2F /* zebra.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = zebra.m4a; path = Resources/words/zebra.m4a; sourceTree = "<group>"; };
+		6DCEDD4214B3F6D100334A2F /* story.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = story.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +537,7 @@
 				6D11E19114AAC07000F51E9D /* Icon@2x.png */,
 				6D11E19314AAC07000F51E9D /* Info.plist */,
 				6D11E19414AAC07000F51E9D /* iTunesArtwork */,
+				6DCEDD4214B3F6D100334A2F /* story.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				6DCEDD3F14B3F1A900334A2F /* xylophone.m4a in Resources */,
 				6DCEDD4014B3F1A900334A2F /* yellow.m4a in Resources */,
 				6DCEDD4114B3F1A900334A2F /* zebra.m4a in Resources */,
+				6DCEDD4314B3F6D100334A2F /* story.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
