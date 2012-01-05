@@ -10,23 +10,23 @@
 
 @implementation Game
 
-@synthesize score = score_, timer = timer_, treasuresCollected = treasuresCollected_,
-    treasuresNeeded = treasuresNeeded_, balloons = balloons_, dropItems = dropItems_,
+@synthesize score = score_, timer = timer_, dropItemsCollected = dropItemsCollected_,
+    dropItemsNeeded = dropItemsNeeded_, balloons = balloons_, dropItems = dropItems_,
     round = round_, balloonPace = balloonPace_;
 
-int treasuresToAddNextRound;
+int dropItemsToAddNextRound;
 int timerStart;
 
 -(id) init
 {
     timerStart = 20;
-    treasuresToAddNextRound = 2;
+    dropItemsToAddNextRound = 2;
     
-    self.treasuresCollected = 0;
+    self.dropItemsCollected = 0;
     self.score = 0;
     self.timer = timerStart;
     self.round = 1;
-    self.treasuresNeeded = 3;
+    self.dropItemsNeeded = 3;
     self.balloonPace = 2.0f;
     
     words_ = [@"APPLE,ANTLER,AXLE,BABY,CAT,DOG,EGG,FOOT,GIRL,HOME,ICE,JUMP,KITE,LION,MOM,NEST,ONION,PIG,QUIET,ROSE,STAR,TIN,UMBRELLA,VAN,WIN,XYLOPHONE,YELLOW,ZEBRA" componentsSeparatedByString:@","];
@@ -49,19 +49,19 @@ int timerStart;
     return self;
 }
 
--(Boolean) isTreasureCollected
+-(Boolean) isDropItemCollected
 {
-    return self.treasuresCollected >= self.treasuresNeeded;
+    return self.dropItemsCollected >= self.dropItemsNeeded;
 }
 
 -(Boolean) isGameOver
 {
-    return [self isRoundComplete] && ![self isTreasureCollected];
+    return [self isRoundComplete] && ![self isDropItemCollected];
 }
 
 -(Boolean) isRoundComplete
 {
-    return [self isTimeUp] || [self isTreasureCollected];
+    return [self isTimeUp] || [self isDropItemCollected];
 }
 
 -(Boolean) isTimeUp
@@ -81,12 +81,12 @@ int timerStart;
     self.timer = timerStart;
     
     // score is not reset between rounds
-    // player needs to collect more treasures
-    self.treasuresCollected = 0;
+    // player needs to collect more dropItems
+    self.dropItemsCollected = 0;
     
-    // player must retrieve more treasures each round
-    self.treasuresNeeded += treasuresToAddNextRound;
-    treasuresToAddNextRound += 5;
+    // player must retrieve more dropItems each round
+    self.dropItemsNeeded += dropItemsToAddNextRound;
+    dropItemsToAddNextRound += 5;
     
     self.balloonPace -= 0.1; 
     if(self.balloonPace < 0.5) {

@@ -23,14 +23,21 @@
 +(CCScene *) scene;
 -(Balloon*) newBalloon;
 -(void) cleanUpSprite: (CCSprite*) balloon;
+
+-(void) pickupDropItem:(DropItem*) dropItem;
+-(void) cleanUpDropItem:(id) sender data: (DropItem*)dropItem;
+
 -(void) popBalloon: (Balloon*) balloon;
 -(void) setUpClouds;
--(void) checkTouchTreasure: (CGPoint) location;
+-(void) checkTouchDropItem: (CGPoint) location;
 -(void) checkTouchBalloons: (CGPoint) location;
 
 -(void) updateBalloons:(ccTime)dt;
 -(void) updateClouds:(ccTime)dt;
 -(void) showGameOver;
+-(void) setUpMenu;
+
+-(DropItem*) createDropItem:(Balloon*) balloon;
 
 -(void) showRound;
 -(void) nextRound;

@@ -44,7 +44,7 @@ Game *game;
 -(void)updateScore: (int) delta{
     game.score += delta;
     [lblScore setString:[[NSString alloc] initWithFormat:@"Words Collected: %02d/%02d", 
-                         game.treasuresCollected, game.treasuresNeeded]];
+                         game.dropItemsCollected, game.dropItemsNeeded]];
 }
 -(void)updateTime: (float) delta{
     game.timer -= delta;
@@ -83,7 +83,7 @@ Game *game;
         [self setUpClouds];
         
         // score display
-        lblScore = [CCLabelTTF labelWithString:@"Treasures Collected: 00/00" fontName:font fontSize:30];
+        lblScore = [CCLabelTTF labelWithString:@"Words Collected: 00/00" fontName:font fontSize:30];
         CGSize lblSize = lblScore.boundingBox.size;
         lblScore.position = ccp(lblSize.width/2, windowSize_.height-lblSize.height/2);
         lblScore.color = black;
@@ -259,8 +259,8 @@ float secondsSinceLastBalloon = 0;
     [self cleanUpSprite:sender];
 }
 
-- (void) cleanUpTreasure:(id) sender data: (DropItem*)treasure {
-    [game removeDropItem:treasure];
+- (void) cleanUpDropItem:(id) sender data: (DropItem*)dropItem {
+    [game removeDropItem:dropItem];
     [sender stopAllActions];
     [self cleanUpSprite:sender];
 }
@@ -274,33 +274,33 @@ float secondsSinceLastBalloon = 0;
 }
 
 
-- (DropItem*) dropTreasure:(Balloon*) balloon {
-    DropItem* treasure = [game newDropItem:balloon];
+- (DropItem*) createDropItem:(Balloon*) balloon {
+    DropItem* dropItem = [game newDropItem:balloon];
     
-    CCLabelTTF *wordLabel = [CCLabelTTF labelWithString:treasure.string fontName:font fontSize:30];
+    CCLabelTTF *wordLabel = [CCLabelTTF labelWithString:dropItem.string fontName:font fontSize:30];
     wordLabel.color = black;
     
-    treasure.sprite = wordLabel;
+    dropItem.sprite = wordLabel;
     
     CGPoint pos = balloon.sprite.position;
-    treasure.sprite.position = pos;
-    treasure.sprite.scale = 1;
+    dropItem.sprite.position = pos;
+    dropItem.sprite.scale = 1;
     
-    [self addChild:treasure.sprite];
+    [self addChild:dropItem.sprite];
     
     id moveDown = [CCMoveTo actionWithDuration:1 position:ccp(pos.x, -10)];
     
-    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpTreasure:data:) data:treasure];
+    id cleanupAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpDropItem:data:) data:dropItem];
     id seq = [CCSequence actions:moveDown, cleanupAction, nil];
-    [treasure.sprite runAction:seq];
+    [dropItem.sprite runAction:seq];
     
-    return treasure;
+    return dropItem;
 }
 
 
 - (void) popBalloon:(Balloon*) balloon {
     CGPoint pos = balloon.sprite.position;
-    [self dropTreasure: balloon];
+    [self createDropItem: balloon];
     //[[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3"];
     [[SimpleAudioEngine sharedEngine] playEffect:@"balloon_pop.mp3" pitch:1 pan:1 gain:0.1f];
     
@@ -309,11 +309,12 @@ float secondsSinceLastBalloon = 0;
     [self cleanUpBalloon:balloon.sprite data: balloon];
 }
 
-- (void) pickupTreasure:(DropItem*) treasure {
-    game.treasuresCollected ++;
+- (void) pickupDropItem:(DropItem*) dropItem {
+    game.dropItemsCollected ++;
     [self updateScore: 1];
-    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.m4a", treasure.string]];
-    [self cleanUpTreasure:treasure.sprite data: treasure];
+    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.m4a", dropItem.string]];
+
+    [self cleanUpDropItem: dropItem.sprite data: dropItem];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -324,7 +325,7 @@ float secondsSinceLastBalloon = 0;
     
 	CGPoint location = [self convertTouchToNodeSpace: touch];
 
-    [self checkTouchTreasure:location];
+    [self checkTouchDropItem:location];
     [self checkTouchBalloons:location];
 }
 
@@ -342,13 +343,13 @@ float secondsSinceLastBalloon = 0;
     }
 }
 
-- (void) checkTouchTreasure: (CGPoint) location {
-    // check treasures first, so we don't drop something just to pick it up
-    for(DropItem* treasure in game.dropItems) {
+- (void) checkTouchDropItem: (CGPoint) location {
+    // check dropItems first, so we don't drop something just to pick it up
+    for(DropItem* dropItem in game.dropItems) {
         // we have to refine this bounding box later
-        CGRect rect = [treasure.sprite boundingBox];
+        CGRect rect = [dropItem.sprite boundingBox];
         if(CGRectContainsPoint(rect, location)) {
-            [self pickupTreasure:treasure];
+            [self pickupDropItem:dropItem];
             return;  // if you don't return here (or handle otherwise), there will be an error (deleting breaks enumeration)
         }
     }

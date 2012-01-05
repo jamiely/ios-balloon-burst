@@ -15,8 +15,8 @@
 {
     int score_;
     float timer_;
-    int treasuresCollected_;
-    int treasuresNeeded_;
+    int dropItemsCollected_;
+    int dropItemsNeeded_;
     int round_;
     float balloonPace_;
     
@@ -28,8 +28,8 @@
 
 @property (readwrite, assign) int score;
 @property (readwrite, assign) float timer;
-@property (readwrite, assign) int treasuresCollected;
-@property (readwrite, assign) int treasuresNeeded;
+@property (readwrite, assign) int dropItemsCollected;
+@property (readwrite, assign) int dropItemsNeeded;
 @property (readwrite, assign) int round;
 @property (readwrite, assign) float balloonPace;
 
@@ -39,7 +39,7 @@
 -(id) init;
 
 -(void) nextRound;
--(Boolean) isTreasureCollected;
+-(Boolean) isDropItemCollected;
 -(Boolean) isRoundComplete;
 -(Boolean) isGameOver;
 -(Boolean) isTimeUp;
