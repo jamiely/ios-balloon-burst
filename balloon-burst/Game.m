@@ -94,14 +94,11 @@ int timerStart;
     }
 }
 
-- (Balloon *) newBalloon {
-    CCSprite* balloonSprite = [CCSprite spriteWithFile: @"balloon.png"];
+- (Balloon *) newBalloon: (CCSprite*) sprite {
     int balloonSpeed = arc4random() % 8 + 2;
     
     NSString* letter = [NSString stringWithFormat:@"%c", (unsigned char) arc4random() % 26 + 65];
-    Balloon* balloon = [[Balloon alloc] initWithString:balloonSpeed/60.0f sprite:balloonSprite string:letter];
-    
-    NSLog(@"scale: %f, %@", balloonSpeed/60.0f, letter);
+    Balloon* balloon = [[Balloon alloc] initWithString:balloonSpeed/60.0f sprite:sprite string:letter];
     
     [balloons_ addObject:balloon];
     

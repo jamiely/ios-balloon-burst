@@ -20,7 +20,7 @@
 -(id) initWithString:(float) scale sprite: (CCSprite*) sprite string: (NSString*) string
 {
     speed_ = 30.0f; // 30 px a second
-    scale_ = 0.1f;
+    scale_ = 1.5f;
     sprite.scale = scale_;
     
     sprite_ = sprite;

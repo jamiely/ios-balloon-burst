@@ -20,6 +20,7 @@ CCLabelTTF *lblRound;
 ccColor3B black;
 NSString* font;
 
+NSArray *balloonImages;
 NSMutableArray *clouds;
 Game *game;
 
@@ -58,6 +59,8 @@ Game *game;
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(204,243,255,255)])) {
         globalScale_ = 2;
+        
+        balloonImages = [[NSArray alloc] initWithObjects:@"balloon_blue.png", @"balloon_brown.png", @"balloon_cyan.png", @"balloon_lime.png", @"balloon_olive.png", @"balloon_orange.png", @"balloon_pink.png", @"balloon_purple.png", @"balloon_red.png", @"balloon_yellow.png", nil];
         
         black = ccc3(0, 0, 0);
         font = @"Helvetica";
@@ -232,7 +235,9 @@ float secondsSinceLastBalloon = 0;
 }
 
 - (Balloon*) newBalloon {
-    Balloon* balloon = [game newBalloon];
+    NSString* spriteFile = [balloonImages objectAtIndex: arc4random() % balloonImages.count];
+    CCSprite* balloonSprite = [CCSprite spriteWithFile: spriteFile];
+    Balloon* balloon = [game newBalloon: balloonSprite];
     int full = balloon.sprite.boundingBox.size.width * 0.75;
     int x = arc4random() % (int)(windowSize_.width - full) + full;
     

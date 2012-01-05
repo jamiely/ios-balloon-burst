@@ -43,7 +43,7 @@
 -(Boolean) isRoundComplete;
 -(Boolean) isGameOver;
 -(Boolean) isTimeUp;
--(Balloon*) newBalloon;
+-(Balloon*) newBalloon: (CCSprite*) sprite;
 -(DropItem*) newDropItem:(Balloon*) balloon;
 -(void) removeDropItem:(id)object;
 -(void) removeBalloon:(id)object;
