@@ -37,6 +37,16 @@
 -(void) showGameOver;
 -(void) setUpMenu;
 
+-(void) initBalloonImages;
+-(void) initAudioEngine;
+-(void) initBackgroundMusic;
+-(void) initLabels;
+
+-(void) setupDefaults;
+-(void) setupWindow;
+
+-(CCLabelTTF*) labelWithString: (NSString*) string fontSize: (int) fontSize position: (CGPoint) position;
+
 -(DropItem*) createDropItem:(Balloon*) balloon;
 
 -(void) showRound;
