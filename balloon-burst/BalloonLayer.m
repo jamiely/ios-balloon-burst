@@ -452,7 +452,8 @@ float secondsSinceLastBalloon = 0;
 - (void) pickupDropItem:(DropItem*) dropItem {
     game.dropItemsCollected ++;
     [self updateScore: 1];
-    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.m4a", dropItem.string]];
+    [[SimpleAudioEngine sharedEngine] playEffect:
+     [NSString stringWithFormat:@"%@.m4a", [dropItem.string lowercaseString]]];
 
     [self cleanUpDropItem: dropItem.sprite data: dropItem];
 }
